@@ -1,33 +1,334 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "highlight.js/styles/monokai.css";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* .sheet::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background-color: red;
+  top: 240px;
+  z-index: 0;
+} */
+
+.notion-max-w {
+  max-width: 560px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.loader {
+  width: 32px;
+  height: 32px;
+  border: 5px solid #000;
+  border-bottom-color: #fff;
+  border-radius: 50%;
+  display: block;
+  box-sizing: border-box;
+  animation: rotation 0.6s linear infinite;
+}
+.island-shadow {
+  box-shadow:
+    0px 26px 10px rgba(105, 117, 134, 0.02),
+    0px 15px 9px rgba(105, 117, 134, 0.08),
+    0px 7px 7px rgba(105, 117, 134, 0.13),
+    0px 2px 4px rgba(105, 117, 134, 0.15);
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
+.notion-custom-image {
+  box-shadow:
+    0px 5px 2px rgba(105, 117, 134, 0.01),
+    0px 3px 2px rgba(105, 117, 134, 0.03),
+    0px 1px 1px rgba(105, 117, 134, 0.04),
+    0px 0px 1px rgba(105, 117, 134, 0.05);
+
+  border: solid #fff 4px;
+  background-color: #f8fafc;
+  border-radius: 12px;
+}
+
+.folder {
+  background: linear-gradient(180deg, #f5f8fe 0%, #f0f4fb 100%);
+}
+
+.empty-grid {
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    224.75deg,
+    rgba(245, 248, 254, 0) 50%,
+    #f0f4fb 100%
+  );
+}
+.fluid {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+.video-clip {
+  border-radius: 8px;
+}
+.edge {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.edge-inverse {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.edge-meteor {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 25%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.pp {
+  background: #dbe2e8;
+  box-shadow:
+    0px 9px 3px 0px rgba(105, 117, 134, 0),
+    0px 6px 2px 0px rgba(105, 117, 134, 0.01),
+    0px 3px 2px 0px rgba(105, 117, 134, 0.05),
+    0px 1px 1px 0px rgba(105, 117, 134, 0.09),
+    0px 0px 1px 0px rgba(105, 117, 134, 0.1);
+}
+.pp2 {
+  background: #dbe2e8;
+  box-shadow:
+    0px 12px 6px 0px rgba(105, 117, 134, 0),
+    0px 9px 5px 0px rgba(105, 117, 134, 0.01),
+    0px 6px 6px 0px rgba(105, 117, 134, 0.05),
+    0px 4px 4px 0px rgba(105, 117, 134, 0.09),
+    0px 0px 4px 0px rgba(105, 117, 134, 0.1);
+}
+
+.card-shadow {
+  box-shadow:
+    0px 9px 3px 0px rgba(105, 117, 134, 0),
+    0px 6px 2px 0px rgba(105, 117, 134, 0.01),
+    0px 3px 2px 0px rgba(105, 117, 134, 0.05),
+    0px 1px 1px 0px rgba(105, 117, 134, 0.09),
+    0px 0px 1px 0px rgba(105, 117, 134, 0.1);
+}
+
+.sheet-shadow {
+  box-shadow:
+    0px -50px 20px rgba(105, 117, 134, 0.01),
+    0px -28px 17px rgba(105, 117, 134, 0.03),
+    0px -12px 12px rgba(105, 117, 134, 0.04),
+    0px -3px 7px rgba(105, 117, 134, 0.05);
+}
+
+.card-shadow-lg {
+  box-shadow:
+    0px 24px 10px rgba(105, 117, 134, 0.01),
+    0px 14px 8px rgba(105, 117, 134, 0.05),
+    0px 6px 6px rgba(105, 117, 134, 0.09),
+    0px 2px 3px rgba(105, 117, 134, 0.1);
+}
+
+.img-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 20.31%,
+    #fff 73.44%
+  );
+}
+.thumbnail-bg {
+  background: linear-gradient(
+    180deg,
+    #f8fafc 50%,
+    rgba(248, 250, 252, 0) 91.9%
+  );
+}
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 220, 100%, 46%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210, 40%, 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210, 31%, 95%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --maintext: 216, 21%, 27%;
+    --subtext: 215.4 16.3% 46.9%;
+    --subtle: 240, 20%, 99%;
   }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+
+  color: #c9d1d9;
+  background: #0d1117;
+}
+
+.hljs-comment,
+.hljs-punctuation {
+  color: #8b949e;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-meta,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: #79c0ff;
+}
+
+.hljs-variable,
+.hljs-literal,
+.hljs-number,
+.hljs-doctag {
+  color: #ffa657;
+}
+
+.hljs-params {
+  color: #c9d1d9;
+}
+
+.hljs-function {
+  color: #d2a8ff;
+}
+
+.hljs-class,
+.hljs-tag,
+.hljs-title,
+.hljs-built_in {
+  color: #7ee787;
+}
+
+.hljs-keyword,
+.hljs-type,
+.hljs-builtin-name,
+.hljs-meta-keyword,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #ff7b72;
+}
+
+.hljs-string,
+.hljs-undefined {
+  color: #a5d6ff;
+}
+
+.hljs-regexp {
+  color: #a5d6ff;
+}
+
+.hljs-symbol {
+  color: #79c0ff;
+}
+
+.hljs-bullet {
+  color: #ffa657;
+}
+
+.hljs-section {
+  color: #79c0ff;
+  font-weight: bold;
+}
+
+.hljs-quote,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  color: #7ee787;
+}
+
+.hljs-emphasis {
+  color: #ffa657;
+  font-style: italic;
+}
+
+.hljs-strong {
+  color: #ffa657;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  color: #ffa198;
+  background-color: #490202;
+}
+
+.hljs-addition {
+  color: #7ee787;
+  background-color: #04260f;
+}
+
+.hljs-link {
+  color: #a5d6ff;
+  font-style: underline;
 }

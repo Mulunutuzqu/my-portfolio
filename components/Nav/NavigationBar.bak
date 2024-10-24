@@ -1,0 +1,17 @@
+"use client";
+import { useStateProvider } from "@/app/provider/StateProvider";
+import Navigation from "./Navigation2";
+import { memo } from "react";
+
+function NavigationBar() {
+  const { isLoading, backButton, currentActive } = useStateProvider();
+  return (
+    <Navigation
+      isLoading={isLoading}
+      backButton={backButton}
+      currentActive={currentActive}
+    />
+  );
+}
+
+export default memo(NavigationBar);

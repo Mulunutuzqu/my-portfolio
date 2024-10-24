@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { cn } from "@/lib/utils";
+import EdgeOverlay from "@/components/ui/EdgeOverlay";
+
+import { StateProvider } from "./provider/StateProvider";
+import Nav from "@/components/Nav/Nav";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn("font-sans antialiased", fontSans.variable)}>
+        <StateProvider>
+          <Nav />
+
+          <div
+            vaul-drawer-wrapper=""
+            className="flex min-h-screen justify-center bg-white"
+          >
+            {/* <EdgeOverlay top={true} /> */}
+            {children}
+            {/* <EdgeOverlay top={false} /> */}
+          </div>
+        </StateProvider>
+      </body>
     </html>
   );
 }
