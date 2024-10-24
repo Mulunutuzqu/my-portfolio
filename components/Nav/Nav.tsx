@@ -180,7 +180,7 @@ function Nav() {
           {Object.values(MENUS).map((menu) => {
             const Icon = menu.icon;
             return (
-              <Link href={menu.link}>
+              <Link href={menu.link} key={menu.name}>
                 <motion.li
                   className={clsx(
                     "relative flex cursor-pointer items-center gap-[8px] px-[20px] py-[10px] transition-all duration-300 hover:blur-none",
@@ -189,7 +189,6 @@ function Nav() {
                       : "blur-[0px]",
                   )}
                   transition={hoverTransition}
-                  key={menu.name}
                   layout
                   onMouseOver={() => {
                     setActive(menu.name);

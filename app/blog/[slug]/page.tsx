@@ -28,18 +28,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const html = await renderer.render(...blocks);
 
-  const customComponentType =
-    post.properties.CustomComponentType?.rich_text?.[0]?.plain_text ||
-    "Default";
-
-  let DynamicComponent: ComponentType | null = null;
-  try {
-    DynamicComponent = (await import(`@/components/ui/${customComponentType}`))
-      .default;
-  } catch (error) {
-    console.error(`Error importing component ${customComponentType}:`, error);
-  }
-
   return (
     <>
       <div className="pointer-events-none fixed inset-0 z-0 h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.025]" />
