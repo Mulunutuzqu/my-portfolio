@@ -7,7 +7,7 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 
 export const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
+  auth: "secret_j9h1QC17hRZYhr9eQIQiZO98tslJPRkhpNNOjpPkI6n",
 });
 
 export const fetchCasePages = React.cache(() => {
