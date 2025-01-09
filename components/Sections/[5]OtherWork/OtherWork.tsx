@@ -53,8 +53,8 @@ export default function OtherWork() {
             />
           </div>
         </div>
-        <div className="flex w-1/3 flex-nowrap items-start justify-end gap-[20px] md:gap-[20px]">
-          <div className="relative right-[-20px] top-[8px]">
+        <div className="relative left-[-8px] top-[14px] flex w-1/3 flex-nowrap items-start justify-end gap-[20px] md:left-[20px] md:gap-[20px]">
+          <div className="absolute rotate-[6deg] md:rotate-0">
             <VideoStack />
           </div>
         </div>

@@ -6,7 +6,7 @@ interface StateProviderProps {
   children: React.ReactNode;
 }
 
-type availablePage = "Home" | "Blogs" | "Labs" | string;
+type availablePage = "Home" | "Blogs" | "Labs" | string | null;
 
 interface ContextType {
   isLoading: boolean;
@@ -22,9 +22,9 @@ interface ContextType {
 const StateContext = createContext<ContextType | undefined>(undefined);
 
 export function StateProvider({ children }: StateProviderProps) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [backButton, setBackButton] = useState(false);
-  const [currentActive, setCurrentActive] = useState<availablePage>("Home");
+  const [currentActive, setCurrentActive] = useState<availablePage>(null);
   const [homeVisited, setHomeVisited] = useState(false);
 
   const value = {

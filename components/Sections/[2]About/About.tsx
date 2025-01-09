@@ -83,8 +83,8 @@ export default function About() {
             </div>
           ))}
           <div>
-            <div className="absolute ml-[-4px] mt-[-16px] flex h-[68px] w-[64px] md:mt-[-24px] md:h-[80px] md:w-[76px]">
-              <Image src="/assets/logo/you.svg" fill alt="You" />
+            <div className="absolute ml-[10px] mt-[-16px] flex h-[68px] w-[64px] md:ml-[-4px] md:mt-[-24px] md:h-[80px] md:w-[76px]">
+              <Image src="/assets/logo/you2.svg" fill alt="You" />
             </div>
           </div>
         </div>

@@ -4,15 +4,24 @@ import Link from "next/link";
 import React from "react";
 import { motion, useAnimate } from "framer-motion";
 import { BookMarked } from "lucide-react";
+import Image from "next/image";
+import VideoComponent from "@/components/ui/Video";
 
 interface CaseRowProps {
   pageUrl: string;
   title: string;
   description: string;
-  imageURL?: string;
+  imgURL?: string;
+  icon: boolean;
 }
 
-function WritingsRow({ pageUrl, title, description, imageURL }: CaseRowProps) {
+function WritingsRow({
+  pageUrl,
+  title,
+  description,
+  imgURL,
+  icon,
+}: CaseRowProps) {
   return (
     <Link href={pageUrl}>
       <motion.div
@@ -32,18 +41,24 @@ function WritingsRow({ pageUrl, title, description, imageURL }: CaseRowProps) {
           stiffness: 400,
           damping: 20,
         }}
-        className="bg:white flex flex-col gap-[12px] border-b border-border px-[12px] py-[12px] text-maintext hover:border-0 hover:bg-subtle md:px-[20px]"
+        className="bg:white flex flex-col gap-[12px] border-b px-[12px] py-[12px] text-maintext hover:border-0 hover:bg-subtle md:px-[20px]"
       >
-        {imageURL ? <div className="h-[128px] w-full bg-muted"></div> : null}
+        {imgURL ? (
+          <div className="relative flex h-[128px] w-full bg-muted">
+            <VideoComponent url="https://rmctnajnad9ak10m.public.blob.vercel-storage.com/surplus-cover.mp4" />
+          </div>
+        ) : null}
 
         <div className="flex gap-[8px]">
-          <BookMarked className="shrink-0 text-maintext" size={20} />
+          {icon ? (
+            <BookMarked className="shrink-0 text-maintext" size={20} />
+          ) : null}
 
           <div className="flex flex-col gap-[4px]">
-            <p className="line-clamp-1 text-[14px] font-semibold leading-snug">
+            <p className="font-regular line-clamp-1 text-[14px] leading-snug text-maintext">
               {title}
             </p>
-            <p className="line-clamp-1 text-[12px] text-subtext">
+            <p className="line-clamp-1 text-[12px] font-light text-subtext">
               {description}
             </p>
           </div>

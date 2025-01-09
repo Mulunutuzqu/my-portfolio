@@ -21,13 +21,11 @@ export default function NavStateController({
   const { setBackButton } = useStateProvider();
   const { setCurrentActive } = useStateProvider();
 
-  console.log("Current Active Nav:" + currentActive);
-
   useEffect(() => {
     setIsLoading(loading),
       setBackButton(backButton),
       currentActive ? setCurrentActive(currentActive) : null;
-  }, [setCurrentActive, setBackButton, setIsLoading]);
+  }, []);
 
   return null;
   // (

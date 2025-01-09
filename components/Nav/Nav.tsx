@@ -43,25 +43,25 @@ const MENUS: MenuItems = {
 
 const transition = {
   type: "spring",
-  bounce: 0.1,
+  bounce: 0.2,
   duration: 0.6,
 };
 
 const smallTransition = {
   type: "spring",
-  bounce: 0,
+  bounce: 0.1,
   duration: 0.5,
 };
 
 const loaderTransition = {
   type: "spring",
-  bounce: 0,
+  bounce: 0.1,
   duration: 0.2,
 };
 
 const hoverTransition = {
   type: "spring",
-  bounce: 0,
+  bounce: 0.1,
   duration: 0.2,
 };
 
@@ -75,7 +75,7 @@ function Nav() {
   const router = useRouter();
 
   useEffect(() => {
-    setActive(currentActive);
+    // setActive(currentActive);
     setIsCurrentActive(currentActive);
   }, [currentActive]);
 
@@ -88,9 +88,9 @@ function Nav() {
     // >
 
     <motion.div
-      initial={{ top: "50%" }}
+      initial={{ top: isLoading ? "50%" : "-64px" }}
       animate={{ top: isLoading ? "50%" : "16px" }}
-      transition={{ type: "spring", bounce: 0, duration: 0.6 }}
+      transition={{ type: "spring", bounce: 0.2, duration: 0.7 }}
       className="fixed z-[49] mx-auto flex w-full justify-center gap-[16px] [filter:url('#gooey')]"
     >
       {/* <p className="absolute bottom-[-520px] flex h-[32px] w-[200px] place-self-center bg-red-600 text-white">
@@ -129,12 +129,11 @@ function Nav() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-
       <motion.div
         key="main-island"
         className="relative flex h-[52px] origin-center flex-col items-center justify-center overflow-hidden bg-slate-900/90 px-[4px] py-[4px] backdrop-blur-sm"
         style={{ borderRadius: 22 }}
-        initial={{ width: 52, opacity: 0 }}
+        initial={{ width: isLoading ? 64 : 64, opacity: 0 }}
         animate={{
           width: isLoading ? 64 : 342,
           opacity: 1,
@@ -145,7 +144,7 @@ function Nav() {
         <motion.div
           key="loader"
           initial={{
-            opacity: 1,
+            opacity: isLoading ? 1 : 0,
             filter: "blur(0px)",
             scale: 1,
           }}
@@ -196,21 +195,28 @@ function Nav() {
                   onClick={() => {
                     setIsCurrentActive(menu.name);
                   }}
-                  onMouseLeave={() => setActive(isCurrentActive)}
+                  onMouseLeave={() => setActive(null)}
                 >
-                  {active === menu.name ? (
+                  {/* {active === menu.name && currentActive !== menu.name ? (
+                    <motion.div
+                      layoutId="hover-indicator"
+                      className="hover-indicator absolute inset-0 z-0 mx-auto flex h-[2px] items-end justify-center rounded-full bg-white/20 transition-colors"
+                    />
+                  ) : null} */}
+                  {currentActive === menu.name ? (
                     <motion.div
                       layoutId="active-indicator"
-                      className="absolute inset-0 z-0 flex items-end justify-center rounded-[22px] border border-slate-600/70 bg-slate-900/50"
-                    >
-                      {/* <motion.div className="relative bottom-[-40px] h-[60px] w-[60px] rounded-full bg-white/50 blur-xl" /> */}
-                    </motion.div>
+                      className="active-indicator absolute inset-0 z-0 flex items-end justify-center rounded-[22px] border border-slate-600/70 bg-slate-900/50 transition-colors"
+                    />
                   ) : null}
                   <span className="z-10">
                     <Icon
                       size={22}
                       className={clsx(
                         active === menu.name ? "text-white" : "text-slate-400",
+                        isCurrentActive === menu.name
+                          ? "text-white"
+                          : "text-slate-400",
                       )}
                     />
                   </span>
@@ -219,6 +225,9 @@ function Nav() {
                     className={clsx(
                       "relative",
                       active === menu.name ? "text-white" : "text-slate-400",
+                      isCurrentActive === menu.name
+                        ? "text-white"
+                        : "text-slate-400",
                     )}
                   >
                     {menu.name}
