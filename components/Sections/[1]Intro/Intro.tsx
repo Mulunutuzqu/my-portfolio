@@ -8,7 +8,6 @@ import Greetings from "./Greetings";
 export default function Intro() {
   console.log("Intro Rendered!");
   const [scope, animate] = useAnimate();
-  
 
   const handleFlagEnter = () => {
     animate(".flag", { opacity: 0 });
@@ -71,6 +70,7 @@ export default function Intro() {
                 src="/assets/plane.png"
                 fill
                 alt="profile picture"
+                loading="eager"
               />
             </motion.span>
           </motion.span>

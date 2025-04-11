@@ -41,7 +41,7 @@ export default function ExperienceRow({
       transition={transition}
     >
       <div className="pp2 relative mt-[4px] h-[34px] w-[34px] shrink-0 -rotate-6 items-center justify-center overflow-hidden rounded-[6px] border-[2px] border-white bg-muted">
-        <Image src={image} fill alt="logo" />
+        <Image src={image} fill alt="logo" loading="eager" />
       </div>
 
       <div className="flex w-full gap-[12px]">

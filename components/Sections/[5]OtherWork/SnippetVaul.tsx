@@ -50,14 +50,15 @@ export default function SnippetVaul({ url, urlFull }: SnippetVaulProps) {
                     aria-hidden
                     className="mx-auto mb-[16px] mt-[8px] h-1.5 w-12 flex-shrink-0 rounded-full bg-gray-200"
                   />
-                  <div className="relative flex w-full shrink-0">
+                  <div className="relative flex w-full shrink-0 bg-white">
                     <Image
                       src={urlFull}
                       width={0}
                       height={0}
                       sizes="100vw"
                       alt="picture"
-                      className="flex h-auto w-full shrink-0"
+                      className="flex h-auto w-full shrink-0 bg-white"
+                      loading="eager"
                     />
                   </div>
                 </div>

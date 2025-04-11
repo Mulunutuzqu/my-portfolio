@@ -96,6 +96,7 @@ function Greetings() {
           src="/assets/waving-hand.svg"
           alt="Hand waving"
           fill={true}
+          loading="eager"
         />
       </motion.span>
     </motion.span>
