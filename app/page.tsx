@@ -1,15 +1,10 @@
 import { FadeUp } from "@/components/Motions/FadeUp";
-import NavStateController from "@/components/Nav/NavStateController";
 
 import Intro from "@/components/Sections/[1]Intro/Intro";
 import About from "@/components/Sections/[2]About/About";
 
 import Writings from "@/components/Sections/[4]Writings/Writings";
 import OtherWork from "@/components/Sections/[5]OtherWork/OtherWork";
-import Showcases from "@/components/Sections/[5]OtherWork/Showcases";
-import SnippetList from "@/components/Sections/[5]OtherWork/SnippetVaul";
-import Labs from "@/components/Sections/[6]Manifesto/Labs";
-import { Manifesto } from "@/components/Sections/[6]Manifesto/Manifesto";
 
 export default function Home() {
   return (
