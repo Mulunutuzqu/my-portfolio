@@ -4,6 +4,7 @@ import Feed from "./feed";
 import dayjs from "dayjs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import LinkButton from "@/components/ui/LinkButton";
 const handle = "@taztaz_q";
 
 const blogType = ["all posts", "case studies", "others"];
@@ -33,7 +34,7 @@ export default function FeedList({ posts }: { posts: any[] }) {
       <motion.section layout className="flex w-full flex-col">
         <motion.div
           layout
-          className="flex w-full gap-[12px] px-[12px] md:px-[20px]"
+          className="flex w-full gap-[12px] px-[16px] md:px-[20px]"
         >
           <div className="flex h-[144px] flex-col items-center gap-[2px]">
             <div className="pp2 relative flex h-[40px] w-[40px] shrink-0 rotate-[-6deg] flex-col overflow-hidden rounded-[10px] border-[3px] border-white">
@@ -51,31 +52,30 @@ export default function FeedList({ posts }: { posts: any[] }) {
                 Hi! this is where i put all my case studies and other writings,
                 feel free to read!
               </p>
-              <motion.div layout className="flex gap-[4px] font-light">
+              <motion.div
+                layout
+                className="mb-[24px] flex flex-col gap-[4px] font-light md:mb-0 md:flex-row"
+              >
                 <p>You can see:</p>
-                <motion.ul className="flex gap-[0px]" layout>
+                <motion.ul className="flex gap-[8px]" layout>
                   {blogType.map((type, index) => (
                     <motion.li
                       onMouseEnter={() => setActive(type)}
                       onMouseLeave={() => setActive(currentActive)}
                       key={index}
                       layout
-                      className="relative flex cursor-pointer items-center rounded-[6px] px-[6px]"
+                      className="relative flex shrink-0 cursor-pointer items-center"
                       onClick={() => {
                         handleFilter(type), setCurrrentActive(type);
                       }}
                     >
-                      <p
-                        className={`z-10 ${active === type ? "text-maintext" : "text-subtext"}`}
+                      <LinkButton
+                        asToggle
+                        isToggledOn={currentActive === type ? true : false}
+                        href="#"
                       >
                         {type}
-                      </p>
-                      {active === type ? (
-                        <motion.div
-                          layoutId="tab-indicator"
-                          className="s absolute inset-0 z-0 flex items-end justify-center rounded-[6px] border bg-muted"
-                        />
-                      ) : null}
+                      </LinkButton>
                     </motion.li>
                   ))}
                 </motion.ul>

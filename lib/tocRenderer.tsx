@@ -87,11 +87,12 @@ export const tocRenderer =
   
         <style>
           .toc-link {
-            color: #64748b;
+            color: #64748b !important;
+            text-decoration: none !important;
           }
           .toc-link:hover {
             color: #020817;
-            text-decoration: underline;
+            text-decoration: underline !important;
           }
           .pl-0 {}
           .pl-4 { padding-left: 1.3rem; }

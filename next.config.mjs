@@ -4,11 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "utfs.io", // Allow all hosts - not recommended for production
+        hostname: "d4fyselu27.ufs.sh", // Allow all hosts - not recommended for production
         // Or specify exact domains:
         // hostname: 'example.com',
         port: "",
-        pathname: "/f/**",
+        pathname: "/f/",
       },
     ],
   },

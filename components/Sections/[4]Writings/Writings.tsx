@@ -1,4 +1,4 @@
-import { fetchBitePages } from "@/lib/notion";
+import { fetchCasePages } from "@/lib/notion";
 import WritingsList from "./WritingsList";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -10,7 +10,7 @@ export default async function Writings({
   limit?: number;
   icon: boolean;
 }) {
-  const posts = await fetchBitePages();
+  const posts = await fetchCasePages();
 
   return (
     <div className="flex flex-col gap-[0px]">

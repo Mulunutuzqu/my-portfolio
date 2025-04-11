@@ -1,5 +1,15 @@
 .notion-render p {
   min-height: 2em;
+  line-height: 1.8em;
+}
+
+.notion-text-underline {
+  text-decoration-style: wavy;
+  text-decoration-color: #004eeb;
+}
+
+.notion-emoji {
+  font-size: 1.5rem;
 }
 
 .notion-render div.notion-column_list {
@@ -8,16 +18,21 @@
 
 .notion-text-code {
   background-color: rgba(251, 243, 219, 1);
-  display: inline-block;
+  display: inline;
   border-radius: 4px;
-  padding: 0 4px 0 4px;
-  font-size: 13px;
+  padding: 2px 4px 2px 4px;
+  font-size: 14px;
   font-weight: 600;
 }
 .notion-image {
   display: inline-block;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.notion-render a {
+  color: blue;
+  text-decoration: underline;
 }
 .notion-render a.notion-bookmark {
   display: flex;
@@ -84,27 +99,27 @@
   padding: 3px 2px;
 }
 .notion-render h1 {
-  font-size: 1.875em;
+  font-size: 1.5em;
   margin-top: 40px;
   margin-bottom: 10px;
   font-weight: 600;
 }
 .notion-render h2 {
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin-top: 32px;
   margin-bottom: 6px;
   font-weight: 600 !important;
 }
 .notion-render h3 {
-  font-size: 1.25em;
+  font-size: 1em;
   margin-top: 24px;
   margin-bottom: 6px;
   font-weight: 600;
 }
 .notion-render p {
-  min-height: 1.87em;
-  margin-top: 6px;
-  margin-bottom: 6px;
+  min-height: 1em;
+  margin-top: 8px;
+  margin-bottom: 8px;
   padding: 3px 2px;
 }
 .notion-render div.notion-code pre code {
@@ -128,8 +143,8 @@
   margin-bottom: 7.5px;
 }
 .notion-render blockquote.notion-callout {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   padding: 16px 16px 16px 12px;
   display: flex;
   border-radius: 8px;
@@ -424,7 +439,8 @@
 }
 .notion-render ol {
   list-style-type: decimal;
-  list-style-position: inside;
+  list-style-position: outside;
+  margin-left: 1.4rem;
 }
 .notion-render ol li {
   margin-top: 1px;

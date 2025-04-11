@@ -5,11 +5,7 @@ import { BlogSkeleton } from "@/components/Skeletons/Blog";
 export default function Loading() {
   return (
     <>
-      <NavStateController
-        backButton={true}
-        loading={true}
-        currentActive="Blogs"
-      />
+      {/* <NavStateController backButton={true} loading={true} /> */}
       <div className="flex w-full flex-col items-center">
         <main className="flex w-full max-w-[360px] flex-col bg-white transition-all duration-300 md:max-w-[500px]">
           <div className="z-10 flex w-full flex-col border-x border-border bg-white">

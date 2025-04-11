@@ -29,6 +29,16 @@ interface NotionPageProperties {
     rich_text: Array<RichTextItemResponse>;
     id: string;
   };
+  Role: {
+    type: "rich_text";
+    rich_text: Array<RichTextItemResponse>;
+    id: string;
+  };
+  Scope: {
+    type: "rich_text";
+    rich_text: Array<RichTextItemResponse>;
+    id: string;
+  };
   Cover: {
     type: "rich_text";
     rich_text: Array<RichTextItemResponse>;

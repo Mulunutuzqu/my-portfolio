@@ -2,7 +2,7 @@ import { fetchBySlugs, fetchPageBlocks, notion } from "@/lib/notion";
 import bookmarkPlugin from "@notion-render/bookmark-plugin";
 import { NotionRenderer } from "@notion-render/client";
 import hljsPlugin from "@notion-render/hljs-plugin";
-import { ComponentType } from "react";
+import { ComponentType, useEffect } from "react";
 
 import { toggleRenderer } from "@/lib/CustomRenderer";
 import tocRenderer from "@/lib/tocRenderer";
@@ -20,6 +20,8 @@ import { Overlay } from "@/components/Overlay/Overlay";
 import { FadeUp } from "@/components/Motions/FadeUp";
 import Image from "next/image";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { ImageZoomHandler } from "../helper/ImageZoomHandler";
+import NotionContentWrapper from "../helper/NotionContentWrapper";
 
 export const dynamic = "force-static";
 
@@ -86,37 +88,28 @@ export default async function Page(props: {
 
   return (
     <div className="flex w-full flex-col items-center scroll-smooth">
-      <div className="pointer-events-none fixed inset-0 z-0 h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.025]" />
-      <div className="z-10 flex w-full flex-col items-center">
-        <main className="flex w-full max-w-[360px] flex-col bg-white transition-all duration-300 md:max-w-[500px]">
-          <div className="z-10 flex w-full flex-col border-x border-border bg-white">
-            <div className="relative flex h-[200px] w-full overflow-hidden">
-              <div className="absolute inset-0 h-full w-full bg-[radial-gradient(#E3E8EF_1px,transparent_1px)] [background-size:18px_18px]" />
-            </div>
-          </div>
-        </main>
-      </div>
+      <div className="pointer-events-none fixed inset-0 z-[0] h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.025]" />
       <FadeUp
         delay={0}
         duration={0.8}
-        className="z-10 mt-[-8px] flex w-full flex-col items-center justify-center gap-[24px] bg-white"
+        className="z-10 mt-[-8px] flex w-full flex-col items-center justify-center gap-[24px]"
       >
-        <NavStateController
-          backButton={true}
-          loading={false}
-          currentActive="Blogs"
-        />
+        <NavStateController backButton={true} />
 
         <Header
           video={post.properties.Video.checkbox}
           title={post.properties.Name.title[0].plain_text}
           description={post.properties.Description.rich_text[0].plain_text}
           url={post.properties.Cover.rich_text[0].plain_text}
+          role={post.properties.Role.rich_text[0].plain_text}
+          scope={post.properties.Scope.rich_text[0].plain_text}
         />
-        <div
-          className="notion-render notion-max-w mt-[-24px] w-full place-self-center p-[8px] md:p-[0px]"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <NotionContentWrapper html={html} />
+        <div className="notion-max-w flex w-full p-[16px] md:p-[0px]">
+          <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
+            You&apos;ve reached the end.
+          </p>
+        </div>
         {/* <div>
           {DynamicComponent ? (
             <DynamicComponent />

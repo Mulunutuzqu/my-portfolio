@@ -1,9 +1,6 @@
 "use client";
-
 import { useStateProvider } from "@/app/provider/StateProvider";
-
-import { memo } from "react";
-
+import { memo, useCallback, useState, useEffect, Suspense } from "react";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -12,101 +9,75 @@ import {
   SquareTerminal,
   BookOpenText,
   ArrowLeft,
+  X,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 
-type availablePage = "Home" | "Blogs" | "Labs" | string;
-
-interface NavigationProps {
-  isLoading: boolean;
-  backButton: boolean;
-  currentActive: availablePage;
-}
-
-interface MenuItem {
-  name: string;
-  icon: LucideIcon;
-  link: string;
-}
-
-interface MenuItems {
-  [key: string]: MenuItem;
-}
-
-const MENUS: MenuItems = {
-  Home: { name: "Home", icon: Home, link: "/" },
-  Blogs: { name: "Blogs", icon: BookOpenText, link: "/blog" },
-  Labs: { name: "Labs", icon: SquareTerminal, link: "/lab" },
-};
+const MENUS = {
+  "/": { name: "Home", icon: Home, link: "/" },
+  "/blog": { name: "Blogs", icon: BookOpenText, link: "/blog" },
+  // "/lab": { name: "Labs", icon: SquareTerminal, link: "/lab" },
+} as const;
 
 const transition = {
   type: "spring",
-  bounce: 0.2,
-  duration: 0.6,
+  bounce: 0.25,
+  duration: 0.45,
 };
 
-const smallTransition = {
-  type: "spring",
-  bounce: 0.1,
-  duration: 0.5,
-};
-
-const loaderTransition = {
-  type: "spring",
-  bounce: 0.1,
-  duration: 0.2,
-};
-
-const hoverTransition = {
-  type: "spring",
-  bounce: 0.1,
-  duration: 0.2,
-};
-
-function Nav() {
-  const { isLoading, backButton, currentActive } = useStateProvider();
-
-  const [active, setActive] = useState(currentActive);
+const NavigationContent = memo(function NavigationContent() {
+  const {
+    isLoading,
+    backButton,
+    currentActive,
+    setCurrentActive,
+    homeVisited,
+    setHomeVisited,
+    setBackButton,
+    isDrawerOpen,
+    setIsDrawerOpen,
+  } = useStateProvider();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [isCurrentActive, setIsCurrentActive] = useState(currentActive);
-
   const router = useRouter();
+  const pathname = usePathname();
 
+  // Handle both initial mount and pathname changes
   useEffect(() => {
-    // setActive(currentActive);
-    setIsCurrentActive(currentActive);
-  }, [currentActive]);
+    const menuName = Object.entries(MENUS).find(
+      ([path]) => pathname === path || pathname.startsWith(path + "/"),
+    )?.[1]?.name;
+
+    if (menuName && menuName !== currentActive) {
+      setCurrentActive(menuName);
+    }
+  }, [pathname, setCurrentActive]);
+
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    setHoveredItem(null);
+  }, []);
 
   return (
-    // <motion.div
-    //   layout
-    //   className="fixed z-[49] mx-auto flex w-full justify-center"
-    //   initial={{ top: "50%" }}
-    //   animate={{ top: isLoading ? "50%" : "16px" }}
-    // >
-
     <motion.div
       initial={{ top: isLoading ? "50%" : "-64px" }}
-      animate={{ top: isLoading ? "50%" : "16px" }}
-      transition={{ type: "spring", bounce: 0.2, duration: 0.7 }}
-      className="fixed z-[49] mx-auto flex w-full justify-center gap-[16px] [filter:url('#gooey')]"
+      animate={{ top: isLoading ? "50%" : "14px" }}
+      transition={transition}
+      className="fixed z-[1001] flex w-full justify-center gap-[16px] [filter:url('#gooey')]"
+      id="navigation-bar"
+      layoutScroll
+      layoutId="container-nav"
     >
-      {/* <p className="absolute bottom-[-520px] flex h-[32px] w-[200px] place-self-center bg-red-600 text-white">
-        {isCurrentActive}
-      </p> */}
       <AnimatePresence mode="popLayout">
-        {!isLoading && backButton ? (
+        {!isLoading && backButton && (
           <motion.div
             key="back-island"
-            layout
-            initial={{
-              x: 0,
-              opacity: 0,
-            }}
+            // layout
+            initial={{ x: 0, opacity: 0 }}
             animate={{
-              x: -180,
+              x: -128,
               opacity: 1,
               transition: {
                 type: "spring",
@@ -116,128 +87,127 @@ function Nav() {
               },
             }}
             exit={{
-              x: 32,
+              x: 16,
               opacity: 0,
-              transition: { type: "spring", bounce: 0.2, duration: 0.6 },
+              transition: {
+                type: "spring",
+                bounce: 0.2,
+                duration: 0.6,
+              },
             }}
-            whileHover={{ scale: 0.95, transition: hoverTransition }}
-            className="absolute flex h-[52px] w-[64px] cursor-pointer items-center justify-center gap-[0px] bg-slate-900/90"
+            whileHover={{ scale: 0.95 }}
+            className="absolute flex h-[52px] w-[64px] cursor-pointer items-center justify-center bg-slate-900/90"
             style={{ borderRadius: 22 }}
-            onClick={() => router.back()}
+            onClick={() => {
+              router.back();
+            }}
           >
             <ArrowLeft className="text-white" size={28} />
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
       <motion.div
         key="main-island"
         className="relative flex h-[52px] origin-center flex-col items-center justify-center overflow-hidden bg-slate-900/90 px-[4px] py-[4px] backdrop-blur-sm"
         style={{ borderRadius: 22 }}
-        initial={{ width: isLoading ? 64 : 64, opacity: 0 }}
+        initial={{ width: 64, opacity: 0 }}
         animate={{
-          width: isLoading ? 64 : 342,
+          width: isDrawerOpen ? 64 : 236,
           opacity: 1,
-          right: !isLoading && backButton ? -40 : 0,
+          right: !isDrawerOpen && backButton ? -40 : 0,
+          // marginLeft: !isLoading && backButton ? 72 : 0,
         }}
         transition={transition}
       >
         <motion.div
-          key="loader"
+          key="drawerControl"
           initial={{
-            opacity: isLoading ? 1 : 0,
-            filter: "blur(0px)",
+            opacity: 1,
+            filter: "blur(6px)",
             scale: 1,
           }}
           animate={{
-            opacity: isLoading ? 1 : 0,
-            filter: isLoading ? "blur(0px)" : "blur(6px)",
-            scale: isLoading ? "scale:1" : "scale:0.5",
+            opacity: isDrawerOpen ? 1 : 0,
+            filter: isDrawerOpen ? "blur(0px)" : "blur(6px)",
+            scale: isDrawerOpen ? 1 : 0.5,
           }}
-          className="pointer-events-none absolute z-10 flex h-[48px] w-[48px] items-center justify-center"
-          transition={loaderTransition}
+          className="absolute z-10 flex h-[48px] w-[48px] cursor-pointer items-center justify-center"
+          transition={transition}
+          onClick={() => {
+            setIsDrawerOpen(false);
+          }}
         >
-          <motion.span
-            key="loader"
-            layout
-            className="loader place-self-center"
-          ></motion.span>
+          <X size={30} className="cursor-pointer text-white" />
         </motion.div>
-
         <motion.ul
-          onMouseOver={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="relative flex origin-center place-self-center overflow-hidden"
-          key="menus"
+          onMouseOver={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="absolute flex origin-center place-self-center overflow-hidden"
           animate={{
-            opacity: isLoading ? 0 : 1,
-            filter: isLoading ? "blur(6px)" : "blur(0px)",
-            pointerEvents: isLoading ? "none" : "auto",
-            scale: isLoading ? 0.5 : 1,
+            opacity: isDrawerOpen ? 0 : 1,
+            filter: isDrawerOpen ? "blur(6px)" : "blur(0px)",
+            pointerEvents: isDrawerOpen ? "none" : "auto",
+            scale: isDrawerOpen ? 0.5 : 1,
+            display: isDrawerOpen ? "none" : "flex",
           }}
-          transition={smallTransition}
         >
-          {Object.values(MENUS).map((menu) => {
-            const Icon = menu.icon;
-            return (
-              <Link href={menu.link} key={menu.name}>
-                <motion.li
-                  className={clsx(
-                    "relative flex cursor-pointer items-center gap-[8px] px-[20px] py-[10px] transition-all duration-300 hover:blur-none",
-                    isHovered && active !== menu.name
-                      ? "blur-[2px]"
-                      : "blur-[0px]",
-                  )}
-                  transition={hoverTransition}
-                  layout
-                  onMouseOver={() => {
-                    setActive(menu.name);
-                  }}
-                  onClick={() => {
-                    setIsCurrentActive(menu.name);
-                  }}
-                  onMouseLeave={() => setActive(null)}
-                >
-                  {/* {active === menu.name && currentActive !== menu.name ? (
-                    <motion.div
-                      layoutId="hover-indicator"
-                      className="hover-indicator absolute inset-0 z-0 mx-auto flex h-[2px] items-end justify-center rounded-full bg-white/20 transition-colors"
-                    />
-                  ) : null} */}
-                  {currentActive === menu.name ? (
-                    <motion.div
-                      layoutId="active-indicator"
-                      className="active-indicator absolute inset-0 z-0 flex items-end justify-center rounded-[22px] border border-slate-600/70 bg-slate-900/50 transition-colors"
-                    />
-                  ) : null}
-                  <span className="z-10">
-                    <Icon
-                      size={22}
-                      className={clsx(
-                        active === menu.name ? "text-white" : "text-slate-400",
-                        isCurrentActive === menu.name
-                          ? "text-white"
-                          : "text-slate-400",
-                      )}
-                    />
-                  </span>
-
-                  <span
+          {Object.values(MENUS).map((menu) => (
+            <Link
+              href={menu.link}
+              key={menu.name}
+              prefetch={false}
+              onClick={(e) => {
+                if (menu.link === pathname) {
+                  e.preventDefault();
+                  return;
+                }
+                menu.link === "/"
+                  ? setHomeVisited(true)
+                  : setHomeVisited(false);
+              }}
+            >
+              <motion.li
+                className={clsx(
+                  "relative flex cursor-pointer items-center gap-[8px] px-[20px] py-[10px] transition-all duration-300 hover:blur-none",
+                  isHovered && hoveredItem !== menu.name
+                    ? "blur-[2px]"
+                    : "blur-[0px]",
+                )}
+                // layout
+                onMouseOver={() => setHoveredItem(menu.name)}
+              >
+                {currentActive === menu.name ? (
+                  <motion.div
+                    layoutId="active-tab"
+                    className="active-indicator absolute inset-0 z-0 flex items-end justify-center rounded-[22px] border border-slate-600/70 bg-slate-900/50"
+                  />
+                ) : null}
+                <span className="z-10">
+                  <menu.icon
+                    size={22}
                     className={clsx(
-                      "relative",
-                      active === menu.name ? "text-white" : "text-slate-400",
-                      isCurrentActive === menu.name
+                      hoveredItem === menu.name || currentActive === menu.name
                         ? "text-white"
                         : "text-slate-400",
                     )}
-                  >
-                    {menu.name}
-                  </span>
-                </motion.li>
-              </Link>
-            );
-          })}
+                  />
+                </span>
+                <span
+                  className={clsx(
+                    "relative",
+                    hoveredItem === menu.name || currentActive === menu.name
+                      ? "text-white"
+                      : "text-slate-400",
+                  )}
+                >
+                  {menu.name}
+                </span>
+              </motion.li>
+            </Link>
+          ))}
         </motion.ul>
       </motion.div>
+
       <svg className="hidden">
         <defs>
           <filter id="gooey">
@@ -254,6 +224,12 @@ function Nav() {
       </svg>
     </motion.div>
   );
-}
+});
 
-export default memo(Nav);
+export default function Nav() {
+  return (
+    <Suspense>
+      <NavigationContent />
+    </Suspense>
+  );
+}

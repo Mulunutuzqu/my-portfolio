@@ -7,7 +7,7 @@ export const calloutRenderer = createBlockRenderer<CalloutBlockObjectResponse>(
     if (!renderer.client) return "";
 
     const iconHtml = data.callout.icon
-      ? `<div class="icon">${await renderer.render(data.callout.icon)}</div>`
+      ? `<div class="icon ">${await renderer.render(data.callout.icon)}</div>`
       : "";
 
     // Render the initial rich text
@@ -21,17 +21,20 @@ export const calloutRenderer = createBlockRenderer<CalloutBlockObjectResponse>(
     return `
       <blockquote class="notion-${data.type} notion-color-${data.callout.color}">
         ${iconHtml}
-        <div class="content flex flex-col gap-[8px]">
-        <div>
-          ${initialContent}
+        <div class="content">
+          <div>
+           <p> ${initialContent}</p>
+            ${childContent}
           </div>
-          ${childContent}
         </div>
       </blockquote>
       <style>
-        .content > p{
-            margin: 0px;
-            padding: 0px
+        .content{
+        display: flex !important;
+        }
+        .content p{
+            margin: 0px !important;
+            padding: 0px !important;
             
         }
       </style>

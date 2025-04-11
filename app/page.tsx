@@ -1,38 +1,40 @@
 import { FadeUp } from "@/components/Motions/FadeUp";
 import NavStateController from "@/components/Nav/NavStateController";
-import { Overlay } from "@/components/Overlay/Overlay";
+
 import Intro from "@/components/Sections/[1]Intro/Intro";
 import About from "@/components/Sections/[2]About/About";
-import StudyCase from "@/components/Sections/[3]StudyCase/StudyCase";
+
 import Writings from "@/components/Sections/[4]Writings/Writings";
 import OtherWork from "@/components/Sections/[5]OtherWork/OtherWork";
-import Labs from "@/components/Sections/[6]Labs/Labs";
-import { ShaderGradientCanvas, ShaderGradient } from "@shadergradient/react";
-import * as reactSpring from "@react-spring/three";
+import Showcases from "@/components/Sections/[5]OtherWork/Showcases";
+import SnippetList from "@/components/Sections/[5]OtherWork/SnippetVaul";
+import Labs from "@/components/Sections/[6]Manifesto/Labs";
+import { Manifesto } from "@/components/Sections/[6]Manifesto/Manifesto";
 
 export default function Home() {
   return (
     <>
+      {/* <NavStateController backButton={true} /> */}
       <div className="pointer-events-none fixed inset-0 z-0 h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.025]" />
-
-      <main className="flex w-full max-w-[380px] flex-col bg-white transition-all duration-300 md:max-w-[500px]">
-        <div className="pointer-events-none fixed z-0 h-screen w-full max-w-[380px] bg-noise bg-[size:180px] bg-repeat opacity-[0.025] md:max-w-[500px]" />
-        <div className="z-10 w-full border-x border-border bg-white">
-          <div className="relative flex h-[200px] w-full overflow-hidden">
+      <main className="relative flex min-h-screen w-full max-w-[420px] flex-col transition-all duration-300 md:max-w-[580px]">
+        <div className="pointer-events-none fixed z-0 h-screen w-full max-w-[420px] md:max-w-[580px]" />
+        <div className="z-10 mt-[40px] w-full rounded-[28px]">
+          {/* <div className="relative flex h-[200px] w-full overflow-hidden">
             <div className="absolute inset-0 h-full w-full bg-[radial-gradient(#E3E8EF_1px,transparent_1px)] [background-size:18px_18px]"></div>
-          </div>
-          <NavStateController
-            backButton={false}
-            loading={false}
-            currentActive="Home"
-          />
+          </div> */}
+          {/* <NavStateController backButton={false} loading={false} /> */}
           <FadeUp delay={0} duration={0.8} className="flex w-full flex-col">
             <Intro />
             <About />
-            <StudyCase />
-            <Writings limit={3} icon />
+
+            <Writings icon={false} />
+
             <OtherWork />
-            <Labs />
+            <div className="notion-max-w flex w-full p-[16px] md:p-[0px]">
+              <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
+                Work in progress.
+              </p>
+            </div>
           </FadeUp>
           <div className="h-[64px]"></div>
         </div>

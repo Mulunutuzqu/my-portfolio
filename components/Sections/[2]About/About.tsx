@@ -5,6 +5,17 @@ import Divider from "../../ui/Divider";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import LinkButton from "@/components/ui/LinkButton";
+import { CornerDownRight } from "lucide-react";
+import ExperienceAccordion from "./ExperienceAccordion";
+import ExperienceAccordionTest from "./ExperienceAccordionTest";
+import ContributionAccordion from "./ContributionAccordion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function About() {
   const logos = [
@@ -15,81 +26,112 @@ export default function About() {
     { name: "Unilever Food Solution", url: "/assets/logo/ufs.png" },
     { name: "Kemenkeu", url: "/assets/logo/kemenkeu.png" },
   ];
-  const [currentLogoIndex, setCurrentLogoIndex] = useState<number>(0);
+  // const [currentLogoIndex, setCurrentLogoIndex] = useState<number>(0);
 
-  const updateLogoIndex = (prevIndex: number): number => {
-    // Check if the current index is the last one, then reset, otherwise increment
-    if (prevIndex === logos.length - 1) {
-      return 0;
-    } else {
-      return prevIndex + 1;
-    }
-  };
+  // const updateLogoIndex = (prevIndex: number): number => {
+  //   // Check if the current index is the last one, then reset, otherwise increment
+  //   if (prevIndex === logos.length - 1) {
+  //     return 0;
+  //   } else {
+  //     return prevIndex + 1;
+  //   }
+  // };
 
-  useEffect(() => {
-    const intervalDuration = 1000;
+  // useEffect(() => {
+  //   const intervalDuration = 1000;
 
-    // Set the interval to update the logo index
-    const intervalId = setInterval(() => {
-      setCurrentLogoIndex((prevIndex) => updateLogoIndex(prevIndex));
-    }, intervalDuration);
+  //   // Set the interval to update the logo index
+  //   const intervalId = setInterval(() => {
+  //     setCurrentLogoIndex((prevIndex) => updateLogoIndex(prevIndex));
+  //   }, intervalDuration);
 
-    // Cleanup function to clear the interval
-    return () => clearInterval(intervalId);
-  }, [currentLogoIndex, logos.length]);
+  //   // Cleanup function to clear the interval
+  //   return () => clearInterval(intervalId);
+  // }, [currentLogoIndex, logos.length]);
 
   return (
     <motion.div initial="hidden" animate="show">
-      <section className="z-10 mt-[8px] flex flex-col gap-[8px] p-[12px] transition-all md:px-[20px] md:py-[16px]">
+      <section className="z-10 mt-[8px] flex flex-col gap-[6px] p-[12px] transition-all md:px-[20px] md:py-[16px]">
         <motion.p className="text-[12px] font-semibold text-subtext">
-          Experience
+          Get to know more
         </motion.p>
 
-        <motion.p>
-          Currently crafting at&nbsp;
-          <Link
-            className="text-maintext"
-            href=""
-            // rel="noopener noreferrer"
-            // target="_blank"
-            // passHref={true}
-          >
-            Allofresh
-          </Link>
-          .
-          <br />
-          Redefining shopping experience & elevating design system.
-        </motion.p>
-      </section>
+        <motion.div>
+          <div className="flex items-center gap-[2px]">
+            <p>Currently crafting at&nbsp;</p>
+            <LinkButton href="https://allofresh.id/">Allofresh</LinkButton>
+            <br />
+          </div>
+          <div className="mt-[6px] flex gap-[4px] text-subtext">
+            <span className="relative top-[4px] block">
+              <CornerDownRight strokeWidth={2.5} size={14} />
+            </span>
+            <div className="flex flex-col gap-[12px]">
+              <div className="flex flex-col gap-[4px]">
+                <p>Redefining shopping experience & elevating design system.</p>
 
-      <motion.p className="px-[12px] pb-[8px] pt-[8px] text-[12px] font-semibold text-subtext md:px-[20px]">
-        Notable partners
-      </motion.p>
-      <Divider />
-      <motion.section className="w-full bg-muted px-[12px] py-[8px] md:px-[20px]">
-        <div className="flex w-full justify-start gap-[12px] transition-all md:gap-[24px]">
-          {logos.map((logo, index) => (
-            <div
-              key={logo.name}
-              className="flex items-center justify-center rounded-[8px] border border-border p-[4px]"
-            >
-              <Image
-                className={`animate-logo-runner relative transition-all duration-500 ${currentLogoIndex === index ? "opacity-100 grayscale-0" : "opacity-20 grayscale"}`}
-                src={logo.url}
-                width={24}
-                height={24}
-                alt={logo.name}
-              />
-            </div>
-          ))}
-          <div>
-            <div className="absolute ml-[10px] mt-[-16px] flex h-[68px] w-[64px] md:ml-[-4px] md:mt-[-24px] md:h-[80px] md:w-[76px]">
-              <Image src="/assets/logo/you2.svg" fill alt="You" />
+                <p className="max-w-[500px] text-[12px] leading-[1.75] text-subtext">
+                  Discovery, basket building, campaign enablement, Warehouse
+                  Management System, and feature enhancements.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </motion.section>
-      <Divider />
+          <div className="mt-[20px] flex gap-[8px]">
+            <div className="gradient-border relative">
+              <LinkButton
+                asDownload
+                href="https://drive.google.com/file/d/1WeDx-Svs2PAJBXnAJsTPvaQm14wbjIiR/view?usp=sharing"
+              >
+                Read CV
+              </LinkButton>
+            </div>
+            <LinkButton href="https://www.linkedin.com/in/maulanatazqi-n-soffian-465a47169/">
+              LinkedIn
+            </LinkButton>
+            <LinkButton href="mailto:maulanatazqi@gmail.com">Email</LinkButton>
+          </div>
+        </motion.div>
+        <motion.p className="pb-[12px] pt-[24px] text-[12px] font-semibold text-subtext">
+          Notable partners
+        </motion.p>
+        <motion.section className="mt-[-6px] w-full">
+          <motion.section className="">
+            <div className="flex w-full justify-start gap-[16px] transition-all">
+              {logos.map((logo, index) => (
+                <TooltipProvider key={logo.name} delayDuration={100}>
+                  <Tooltip>
+                    <TooltipTrigger className="cursor-default">
+                      <div className="flex h-[42px] w-[42px] items-center justify-center rounded-[12px] border border-border p-[8px] hover:bg-white">
+                        <Image
+                          className={`animate-logo-runner relative opacity-80 transition-all duration-500`}
+                          src={logo.url}
+                          width={24}
+                          height={24}
+                          alt={logo.name}
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{logo.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ))}
+              <div>
+                <div className="absolute ml-[4px] mt-[-24px] flex h-[80px] w-[76px]">
+                  <Image src="/assets/logo/you2.svg" fill alt="You" />
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        </motion.section>
+        <ExperienceAccordionTest />
+      </section>
+
+      <div className="mt-[24px]">
+        <Divider />
+      </div>
     </motion.div>
   );
 }

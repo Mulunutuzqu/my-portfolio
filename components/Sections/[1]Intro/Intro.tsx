@@ -8,6 +8,7 @@ import Greetings from "./Greetings";
 export default function Intro() {
   console.log("Intro Rendered!");
   const [scope, animate] = useAnimate();
+  
 
   const handleFlagEnter = () => {
     animate(".flag", { opacity: 0 });
@@ -25,15 +26,15 @@ export default function Intro() {
     <>
       <motion.section
         ref={scope}
-        className="z-20 mb-[8px] mt-[-56px] flex flex-col gap-[20px] p-[12px] transition-all md:px-[20px] md:py-[16px]"
+        className="z-20 mb-[8px] mt-[56px] flex flex-col gap-[20px] p-[12px] transition-all md:px-[20px] md:py-[16px]"
       >
-        <motion.div className="relative z-20 mb-[16px] flex h-[120px] w-full justify-center">
+        <motion.div className="relative z-20 mb-[16px] flex h-[148px] w-full justify-center">
           <Image src="/assets/name.svg" fill alt="Handwritten author name" />
         </motion.div>
-        <motion.p className="z-20 mt-[-32px] font-light italic text-subtext">
+        <motion.p className="z-20 mt-[-32px] font-light italic text-maintext">
           <Greetings />
-          Product Designer with 5 years of experience in startups and agencies.
-          Based in Jakarta{" "}
+          Product Designer — Zero-to-market veteran, with 5 years of experience
+          in startups and agencies. Based in Jakarta
           <motion.span
             onMouseEnter={handleFlagEnter}
             onMouseLeave={handleFlagLeave}
@@ -73,10 +74,23 @@ export default function Intro() {
               />
             </motion.span>
           </motion.span>
+          <br /> <br />
+          <span className="text-maintext underline decoration-primary decoration-wavy underline-offset-[3px]">
+            An initiator
+          </span>
+          ,{" "}
+          <span className="text-maintext underline decoration-primary decoration-wavy underline-offset-[3px]">
+            self-motivated
+          </span>
+          , {"&"}{" "}
+          <span className="text-maintext underline decoration-primary decoration-wavy underline-offset-[3px]">
+            detail oriented
+          </span>
+          .
         </motion.p>
         <motion.p className="text-maintext">
-          I craft data inspired interface aiming towards business goals and
-          user’s delight.
+          I craft data-inspired interface aiming towards business goals and user
+          {"'"}s delight.
         </motion.p>
         <div className="flex flex-col gap-[8px] font-light italic text-subtext">
           <motion.p className="flex items-center gap-[8px]">
@@ -85,7 +99,7 @@ export default function Intro() {
           </motion.p>
           <motion.p className="flex items-center gap-[8px]">
             <BookOpen size={20} />
-            User research — to guide iteration.
+            Research — to guide iteration.
           </motion.p>
         </div>
       </motion.section>
