@@ -39,14 +39,26 @@ export default function OtherWork() {
                 <SnippetItem tall url="/assets/comparison/pdp" />
               </div>
             </div>
+
             <div className="columns-2 gap-4">
               <div className="mb-4 break-inside-avoid">
                 <SnippetItem
                   tall
                   video
-                  url="/assets/videos/nuvstyle-optim.webm"
+                  url="/assets/videos/im3-new.webm"
                 />
               </div>
+              <div className="mb-4 max-h-[192px] break-inside-avoid overflow-hidden">
+                <SnippetItem disableExpand url="/assets/works/im3-1.png" />
+              </div>
+              <div className="mb-4 break-inside-avoid">
+                <SnippetItem disableExpand url="/assets/works/im3-2.png" />
+              </div>
+            </div>
+           
+            
+            <div className="columns-2 gap-4">
+             
               <div className="mb-4 max-h-[192px] break-inside-avoid overflow-hidden">
                 <SnippetVaul
                   url="/assets/works/telin.png"
@@ -59,8 +71,18 @@ export default function OtherWork() {
                   urlFull="/assets/works/umara-full.jpg"
                 />
               </div>
+              <div className="mb-4 break-inside-avoid">
+                <SnippetItem
+                  tall
+                  video
+                  url="/assets/videos/nuvstyle-optim.webm"
+                />
+              </div>
             </div>
             <div className="columns-2 gap-4">
+            <div className="mb-4 break-inside-avoid">
+                <SnippetItem tall video url="/assets/videos/onboarding.webm" />
+              </div>
               <div className="mb-4 max-h-[192px] break-inside-avoid overflow-hidden">
                 <SnippetVaul
                   url="/assets/works/prostasia.png"
@@ -73,9 +95,7 @@ export default function OtherWork() {
                   urlFull="/assets/works/axa-full.png"
                 />
               </div>
-              <div className="mb-4 break-inside-avoid">
-                <SnippetItem tall video url="/assets/videos/onboarding.webm" />
-              </div>
+              
             </div>
           </div>
           {/* <div className="columns-2 gap-4">
