@@ -81,9 +81,9 @@ export default function About() {
             <div className="gradient-border relative">
               <LinkButton
                 asDownload
-                href="https://drive.google.com/file/d/1WeDx-Svs2PAJBXnAJsTPvaQm14wbjIiR/view?usp=sharing"
+                href="https://drive.google.com/file/d/1-2CBZhcmqujTAFlSQo4wF-SgmXbOhPjV/view?usp=sharing"
               >
-                Read CV
+                Resume
               </LinkButton>
             </div>
             <LinkButton href="https://www.linkedin.com/in/maulanatazqi-n-soffian-465a47169/">

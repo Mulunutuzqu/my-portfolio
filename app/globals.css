@@ -13,6 +13,27 @@
   z-index: 0;
 } */
 
+.shadow-handle {
+  box-shadow:
+    49px 0px 14px rgba(90, 93, 108, 0.01),
+    31px 0px 12px rgba(90, 93, 108, 0.04),
+    17px 0px 10px rgba(90, 93, 108, 0.14),
+    8px 0px 8px rgba(90, 93, 108, 0.24),
+    2px 0px 4px rgba(90, 93, 108, 0.28),
+    -49px 0px 14px rgba(90, 93, 108, 0.01),
+    -31px 0px 12px rgba(90, 93, 108, 0.04),
+    -17px 0px 10px rgba(90, 93, 108, 0.14),
+    -8px 0px 8px rgba(90, 93, 108, 0.24),
+    -2px 0px 4px rgba(90, 93, 108, 0.28);
+
+  /* box-shadow:
+    0px 204px 57px rgba(90, 93, 108, 0.01),
+    0px 131px 52px rgba(90, 93, 108, 0.11),
+    0px 73px 44px rgba(90, 93, 108, 0.37),
+    0px 33px 33px rgba(90, 93, 108, 0.62),
+    0px 8px 18px rgba(90, 93, 108, 0.72); */
+}
+
 .gradient-border::before {
   content: "";
   position: absolute;

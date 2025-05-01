@@ -115,7 +115,7 @@ function WritingsRow({
     return (
       <motion.p className="flex w-full flex-col gap-[12px] text-[14px]">
         {matches.map((match, index) => (
-          <span key={index} className="line-clamp-5 leading-[26px]">
+          <span key={index} className="line-clamp-2 leading-[26px]">
             {match[1]}
           </span>
         ))}
@@ -179,11 +179,11 @@ function WritingsRow({
         </div>
         <div className="flex w-full flex-col gap-[2px]">
           <motion.div className="flex w-full justify-between">
-            <motion.p className="text-[12px] font-semibold text-subtext">
+            {/* <motion.p className="text-[12px] font-semibold text-subtext">
               Overview
-            </motion.p>
+            </motion.p> */}
           </motion.div>
-          {renderOverview()}
+          <div className="mb-[-5px] flex">{renderOverview()}</div>
           <div className="mt-[12px] flex w-full border-t py-[4px]">
             <Link href={pageUrl}>
               <button className="gap-[6px] py-[4px]">
