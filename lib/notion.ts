@@ -9,7 +9,7 @@ import {
 } from "@notionhq/client/build/src/api-endpoints";
 
 export const notion = new Client({
-  auth: [Redacted],
+  auth: process.env.NOTION_SECRET,
 });
 
 // Define custom interface for your page properties

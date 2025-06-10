@@ -16,7 +16,7 @@ export const calloutRenderer = createBlockRenderer<CalloutBlockObjectResponse>(
     // Render any child blocks if they exist
     const childContent = data.has_children
       ? await renderer.renderBlock(data.id)
-      : "";
+      : ""; 
 
     return `
       <blockquote class="notion-${data.type} notion-color-${data.callout.color}">
