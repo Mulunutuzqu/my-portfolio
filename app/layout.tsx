@@ -33,7 +33,7 @@ export default function RootLayout({
           src="//unpkg.com/react-scan/dist/auto.global.js"
         /> */}
       </head>
-      <body className={cn("font-sans antialiased", fontSans.variable)}>
+      <body className="font-[Inter]">
         <StateProvider>
           <Nav />
           <div className="fixed left-0 top-0 z-50 h-[80px] w-screen">
