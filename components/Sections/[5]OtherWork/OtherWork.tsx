@@ -16,6 +16,24 @@ export default function OtherWork() {
             Showcases
           </p>
           <div className="flex flex-col gap-[32px]">
+            <div className="relative flex h-[400px] w-full gap-4">
+              <Image
+                className="rounded-2xl border bg-muted"
+                src="/assets/works/gemboy.png"
+                alt={""}
+                style={{ objectFit: "cover" }}
+                fill
+              />
+            </div>
+            <div className="relative flex h-[400px] w-full gap-4">
+              <Image
+                className="rounded-2xl border bg-muted"
+                src="/assets/works/ebike.png"
+                alt={""}
+                style={{ objectFit: "cover" }}
+                fill
+              />
+            </div>
             <div className="columns-2 gap-4">
               <div className="mb-4 break-inside-avoid">
                 <SnippetItem tall url="/assets/comparison/cart" />
@@ -42,11 +60,7 @@ export default function OtherWork() {
 
             <div className="columns-2 gap-4">
               <div className="mb-4 break-inside-avoid">
-                <SnippetItem
-                  tall
-                  video
-                  url="/assets/videos/im3-new.webm"
-                />
+                <SnippetItem tall video url="/assets/videos/im3-new.webm" />
               </div>
               <div className="mb-4 max-h-[192px] break-inside-avoid overflow-hidden">
                 <SnippetItem disableExpand url="/assets/works/im3-1.png" />
@@ -55,10 +69,8 @@ export default function OtherWork() {
                 <SnippetItem disableExpand url="/assets/works/im3-2.png" />
               </div>
             </div>
-           
-            
+
             <div className="columns-2 gap-4">
-             
               <div className="mb-4 max-h-[192px] break-inside-avoid overflow-hidden">
                 <SnippetVaul
                   url="/assets/works/telin.png"
@@ -80,7 +92,7 @@ export default function OtherWork() {
               </div>
             </div>
             <div className="columns-2 gap-4">
-            <div className="mb-4 break-inside-avoid">
+              <div className="mb-4 break-inside-avoid">
                 <SnippetItem tall video url="/assets/videos/onboarding.webm" />
               </div>
               <div className="mb-4 max-h-[192px] break-inside-avoid overflow-hidden">
@@ -95,7 +107,6 @@ export default function OtherWork() {
                   urlFull="/assets/works/axa-full.png"
                 />
               </div>
-              
             </div>
           </div>
           {/* <div className="columns-2 gap-4">

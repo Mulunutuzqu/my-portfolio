@@ -70,10 +70,10 @@ export default function About() {
               <div className="flex flex-col gap-[4px]">
                 <p>Redefining shopping experience & elevating design system.</p>
 
-                <p className="max-w-[500px] text-[12px] leading-[1.75] text-subtext">
+                {/* <p className="max-w-[500px] text-[12px] leading-[1.75] text-subtext">
                   Discovery, basket building, campaign enablement, Warehouse
                   Management System, and feature enhancements.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
