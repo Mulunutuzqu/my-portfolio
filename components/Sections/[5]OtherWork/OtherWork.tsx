@@ -25,6 +25,15 @@ export default function OtherWork() {
                 fill
               />
             </div>
+            <div className="relative flex h-[360px] w-full gap-4">
+              <Image
+                className="rounded-2xl border bg-muted"
+                src="/assets/works/yelo.png"
+                alt={""}
+                style={{ objectFit: "cover" }}
+                fill
+              />
+            </div>
             <div className="relative flex h-[400px] w-full gap-4">
               <Image
                 className="rounded-2xl border bg-muted"
