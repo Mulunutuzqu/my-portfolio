@@ -50,8 +50,12 @@ export default function About() {
   // }, [currentLogoIndex, logos.length]);
 
   return (
-    <motion.div initial="hidden" animate="show">
-      <section className="z-10 mt-[8px] flex flex-col gap-[6px] p-[12px] transition-all md:px-[20px] md:py-[16px]">
+    <motion.div
+      className="w-full max-w-[520px] border-l border-r"
+      initial="hidden"
+      animate="show"
+    >
+      <section className="z-10 mt-[8px] flex w-full flex-col gap-[6px] p-[12px] transition-all md:px-[20px] md:py-[16px]">
         <motion.p className="text-[12px] font-semibold text-subtext">
           Get to know more
         </motion.p>
@@ -69,11 +73,6 @@ export default function About() {
             <div className="flex flex-col gap-[12px]">
               <div className="flex flex-col gap-[4px]">
                 <p>Redefining shopping experience & elevating design system.</p>
-
-                <p className="max-w-[500px] text-[12px] leading-[1.75] text-subtext">
-                  Discovery, basket building, campaign enablement, Warehouse
-                  Management System, and feature enhancements.
-                </p>
               </div>
             </div>
           </div>
@@ -92,7 +91,7 @@ export default function About() {
             <LinkButton href="mailto:maulanatazqi@gmail.com">Email</LinkButton>
           </div>
         </motion.div>
-        <motion.p className="pb-[12px] pt-[24px] text-[12px] font-semibold text-subtext">
+        {/* <motion.p className="pb-[12px] pt-[24px] text-[12px] font-semibold text-subtext">
           Notable partners
         </motion.p>
         <motion.section className="mt-[-6px] w-full">
@@ -126,12 +125,10 @@ export default function About() {
             </div>
           </motion.section>
         </motion.section>
-        <ExperienceAccordionTest />
+        <ExperienceAccordionTest />*/}
       </section>
 
-      <div className="mt-[24px]">
-        <Divider />
-      </div>
+      <div className="mt-[32px]">{/* <Divider /> */}</div>
     </motion.div>
   );
 }
