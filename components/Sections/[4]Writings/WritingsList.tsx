@@ -17,10 +17,10 @@ export default function WritingsList({
     <motion.section
       initial="hidden"
       animate="show"
-      className={`mb-[16px] flex w-full flex-col gap-[16px] pt-[40px]`}
+      className={`mb-[16px] flex w-full flex-col gap-[8px] pt-[40px]`}
     >
-      <motion.p className="mb-[-20px] px-[16px] text-[12px] font-semibold text-subtext md:px-[20px]">
-        For you to read
+      <motion.p className="mb-[0px] px-[16px] text-[12px] font-semibold text-subtext md:px-[20px]">
+        Case study
       </motion.p>
       {/* <motion.div className="pointer-events-none relative z-10 mb-[-120px] ml-[20px] h-[200px] w-[200px] rotate-6">
         <Image src="/assets/study-case.svg" fill alt="Handwritten study case" />
@@ -28,7 +28,7 @@ export default function WritingsList({
 
       {limit
         ? posts.slice(0, limit).map((post: any) => (
-            <motion.div key={post.id} className="flex w-full gap-[20px]">
+            <motion.div key={post.id} className="flex w-full gap-[0px]">
               <WritingsRow
                 icon={false}
                 pageUrl={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}

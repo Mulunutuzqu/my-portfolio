@@ -10,39 +10,12 @@ import SnippetItem from "./SnippetItem";
 export default function OtherWork() {
   return (
     <>
-      <section className="mb-[8px] flex w-full items-start gap-[20px] px-[16px] py-[16px] md:px-[20px]">
+      <section className="mb-[8px] flex w-full max-w-[600px] items-start gap-[0px] border-x px-[12px] py-[20px] md:px-[12px]">
         <div className="z-0 flex w-full flex-col">
-          <p className="mb-[12px] text-[12px] font-semibold text-subtext">
+          <p className="mb-[20px] px-[0px] text-[12px] font-semibold text-subtext md:px-[8px]">
             Showcases
           </p>
-          <div className="flex flex-col gap-[32px]">
-            <div className="relative flex h-[400px] w-full gap-4">
-              <Image
-                className="rounded-2xl border bg-muted"
-                src="/assets/works/gemboy.png"
-                alt={""}
-                style={{ objectFit: "cover" }}
-                fill
-              />
-            </div>
-            <div className="relative flex h-[360px] w-full gap-4">
-              <Image
-                className="rounded-2xl border bg-muted"
-                src="/assets/works/yelo.png"
-                alt={""}
-                style={{ objectFit: "cover" }}
-                fill
-              />
-            </div>
-            <div className="relative flex h-[400px] w-full gap-4">
-              <Image
-                className="rounded-2xl border bg-muted"
-                src="/assets/works/ebike.png"
-                alt={""}
-                style={{ objectFit: "cover" }}
-                fill
-              />
-            </div>
+          <div className="flex flex-col gap-[4px]">
             <div className="columns-2 gap-4">
               <div className="mb-4 break-inside-avoid">
                 <SnippetItem tall url="/assets/comparison/cart" />
@@ -137,8 +110,6 @@ export default function OtherWork() {
           </div> */}
         </div>
       </section>
-
-      <Divider />
     </>
   );
 }

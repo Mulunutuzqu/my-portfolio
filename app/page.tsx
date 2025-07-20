@@ -25,7 +25,7 @@ export default function Home() {
             <Writings icon={false} />
 
             <OtherWork />
-            <div className="notion-max-w flex w-full p-[16px] md:p-[0px]">
+            <div className="flex w-full max-w-[600px] p-[16px] md:p-[0px]">
               <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
                 Work in progress.
               </p>

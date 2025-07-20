@@ -22,10 +22,10 @@ export default function Intro() {
   };
 
   return (
-    <>
+    <motion.div className="flex w-full max-w-[600px] flex-col">
       <motion.section
         ref={scope}
-        className="z-20 mb-[8px] mt-[56px] flex flex-col gap-[20px] p-[12px] transition-all md:px-[20px] md:py-[16px]"
+        className="z-20 mb-[8px] flex max-w-[600px] flex-col gap-[20px] border-l border-r px-[20px] pt-[112px] transition-all md:px-[32px]"
       >
         <motion.div className="relative z-20 mb-[16px] flex h-[148px] w-full justify-center">
           <Image src="/assets/name.svg" fill alt="Handwritten author name" />
@@ -105,6 +105,6 @@ export default function Intro() {
       </motion.section>
 
       <Divider />
-    </>
+    </motion.div>
   );
 }
