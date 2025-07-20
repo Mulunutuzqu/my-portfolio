@@ -1,28 +1,46 @@
 .embla {
-  width: 100%;
   margin: auto;
-  --slide-height: 580px;
-  --slide-spacing: 32px;
-  --slide-size: 80%;
+  --slide-height: 640px;
+  --slide-spacing: 24px;
+  --slide-size: 96%;
 }
 .embla__viewport {
   overflow: hidden;
 }
 .embla__container {
   display: flex;
+  flex-direction: row;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing) * -1);
 }
 .embla__slide {
   transform: translate3d(0, 0, 0);
   flex: 0 0 var(--slide-size);
-  min-width: 0;
+  min-width: 0px;
+  max-width: 420px;
   padding-left: var(--slide-spacing);
-  max-width: 980px;
-  aspect-ratio: 49/29;
 }
+
+/* @media (min-width: 500px) {
+  .embla__slide {
+    flex: 0 0 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .embla__slide {
+    flex: 0 0 50%;
+  }
+} */
+
 .embla__slide__img {
-  border-radius: 1px;
+  border-radius: 1.8rem;
   display: block;
   height: var(--slide-height);
   width: 100%;
@@ -107,21 +125,4 @@
 }
 .embla__dot--selected:after {
   box-shadow: inset 0 0 0 0.2rem var(--text-body);
-}
-.embla__parallax {
-  border-radius: 20px;
-  height: 100%;
-  overflow: hidden;
-}
-.embla__parallax__layer {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.embla__parallax__img {
-  max-width: none;
-  flex: 0 0 calc(115% + (var(--slide-spacing) * 2));
-  object-fit: cover;
 }

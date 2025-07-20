@@ -1,4 +1,3 @@
-"use client";
 import React, { useCallback, useEffect, useRef } from "react";
 import {
   EmblaCarouselType,
@@ -6,113 +5,110 @@ import {
   EmblaOptionsType,
 } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-
-import "./style.css";
-
-const TWEEN_FACTOR_BASE = 0.2;
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 type PropType = {
-  slides: number[];
   options?: EmblaOptionsType;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
+  const { options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const tweenFactor = useRef(0);
-  const tweenNodes = useRef<HTMLElement[]>([]);
-
-  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector(".embla__parallax__layer") as HTMLElement;
-    });
-  }, []);
-
-  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
-  }, []);
-
-  const tweenParallax = useCallback(
-    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine();
-      const scrollProgress = emblaApi.scrollProgress();
-      const slidesInView = emblaApi.slidesInView();
-      const isScrollEvent = eventName === "scroll";
-
-      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-        let diffToTarget = scrollSnap - scrollProgress;
-        const slidesInSnap = engine.slideRegistry[snapIndex];
-
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
-
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target();
-
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target);
-
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress);
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress);
-                }
-              }
-            });
-          }
-
-          const translate = diffToTarget * (-1 * tweenFactor.current) * 100;
-          const tweenNode = tweenNodes.current[slideIndex];
-          tweenNode.style.transform = `translateX(${translate}%)`;
-        });
-      });
-    },
-    [],
-  );
-
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
-
-    setTweenNodes(emblaApi);
-    setTweenFactor(emblaApi);
-    tweenParallax(emblaApi);
-    onSelect(emblaApi);
-
-    emblaApi
-      .on("reInit", setTweenNodes)
-      .on("reInit", setTweenFactor)
-      .on("reInit", tweenParallax)
-      .on("scroll", tweenParallax)
-      .on("slideFocus", tweenParallax)
-      .on("select", onSelect);
-  }, [emblaApi, tweenParallax, onSelect]);
+    // No opacity tween logic
+  }, [emblaApi]);
 
   return (
-    <div className="embla flex w-full">
+    <div className="embla pointer-events-none">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((slideIndex, index) => (
-            <div className="embla__slide" key={slideIndex}>
-              <div className="embla__parallax">
-                <div className="embla__parallax__layer">
-                  <img
-                    className={`embla__slide__img embla__parallax__img transition-opacity duration-300 ease-in-out ${
-                      index !== selectedIndex ? "" : ""
-                    }`}
-                    src={`https://picsum.photos/600/350?v=${slideIndex}`}
-                    alt="Your alt text"
-                  />
-                </div>
+          <div className="embla__slide relative">
+            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted py-[32px]">
+              <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
+                <video autoPlay loop muted playsInline preload="auto">
+                  <source
+                    src="/assets/videos/cart.mp4"
+                    type="video/webm"
+                  ></source>
+                </video>
+              </div>
+              <p className="absolute bottom-[8px] z-20 text-[12px] italic text-subtext">
+                *Non-functional animations: for presentation purpose
+              </p>
+              <div className="absolute flex h-[574px] w-[270px] items-center justify-center overflow-hidden rounded-[28px] bg-white">
+                <p>Loading...</p>
               </div>
             </div>
-          ))}
+          </div>
+          <div className="embla__slide relative">
+            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
+              <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
+                <video autoPlay loop muted playsInline preload="auto">
+                  <source
+                    src="/assets/videos/plp.mp4"
+                    type="video/webm"
+                  ></source>
+                </video>
+              </div>
+              <p className="absolute bottom-[8px] z-20 text-[12px] italic text-subtext">
+                *Non-functional animations: for presentation purpose
+              </p>
+              <div className="absolute flex h-[574px] w-[270px] items-center justify-center overflow-hidden rounded-[28px] bg-white">
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
+          <div className="embla__slide invisible relative">
+            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
+              {/* <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
+                <video autoPlay loop muted playsInline preload="auto">
+                  <source
+                    src="/assets/videos/map.mp4"
+                    type="video/webm"
+                  ></source>
+                </video>
+              </div> */}
+              <div className="h-[574px] w-[270px] overflow-hidden rounded-[28px] bg-white">
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
+          <div className="embla__slide invisible relative">
+            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
+              {/* <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
+                <video autoPlay loop muted playsInline preload="auto">
+                  <source
+                    src="/assets/videos/cart.mp4"
+                    type="video/webm"
+                  ></source>
+                </video>
+              </div> */}
+
+              <div className="h-[574px] w-[270px] overflow-hidden rounded-[28px] bg-white">
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
+          <div className="embla__slide relative">
+            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
+              <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
+                <video autoPlay loop muted playsInline preload="auto">
+                  <source
+                    src="/assets/videos/map.mp4"
+                    type="video/webm"
+                  ></source>
+                </video>
+              </div>
+              <p className="absolute bottom-[8px] z-20 text-[12px] italic text-subtext">
+                *Non-functional animations: for presentation purpose
+              </p>
+              <div className="absolute flex h-[574px] w-[270px] items-center justify-center overflow-hidden rounded-[28px] bg-white">
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

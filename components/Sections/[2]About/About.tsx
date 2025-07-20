@@ -51,11 +51,11 @@ export default function About() {
 
   return (
     <motion.div
-      className="w-full max-w-[520px] border-l border-r"
+      className="w-full max-w-[600px] border-l border-r"
       initial="hidden"
       animate="show"
     >
-      <section className="z-10 mt-[8px] flex w-full flex-col gap-[6px] p-[12px] transition-all md:px-[20px] md:py-[16px]">
+      <section className="z-10 mt-[8px] flex w-full flex-col gap-[6px] p-[20px] transition-all md:px-[32px] md:py-[16px]">
         <motion.p className="text-[12px] font-semibold text-subtext">
           Get to know more
         </motion.p>
@@ -124,8 +124,8 @@ export default function About() {
               </div>
             </div>
           </motion.section>
-        </motion.section>
-        <ExperienceAccordionTest />*/}
+        </motion.section>*/}
+        {/* <ExperienceAccordionTest /> */}
       </section>
 
       <div className="mt-[32px]">{/* <Divider /> */}</div>
