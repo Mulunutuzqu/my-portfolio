@@ -1,4 +1,5 @@
 import CarouselView from "@/components/carousel/CarouselView";
+import CarouselView2 from "@/components/carousel/CarouselView2";
 import { FadeUp } from "@/components/Motions/FadeUp";
 
 import Intro from "@/components/Sections/[1]Intro/Intro";
@@ -11,7 +12,7 @@ export default function Home() {
   return (
     <>
       {/* <NavStateController backButton={true} /> */}
-      <div className="pointer-events-none fixed inset-0 z-0 h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.025]" />
+      <div className="bg- pointer-events-none fixed inset-0 z-0 h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.03]" />
       <main className="relative flex min-h-screen w-full flex-col transition-all duration-300">
         <div className="pointer-events-none fixed z-0 h-screen w-full" />
         <div className="z-10 w-full rounded-[28px]">
@@ -25,11 +26,12 @@ export default function Home() {
             className="flex w-full flex-col items-center"
           >
             <Intro />
-            <About />
-            <CarouselView />
+            {/* <About /> */}
             <Writings icon={false} />
+            <CarouselView />
 
-            <OtherWork />
+            <CarouselView2 />
+            {/* <OtherWork /> */}
             <div className="flex w-full max-w-[600px] p-[16px] md:p-[0px]">
               <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
                 Work in progress.

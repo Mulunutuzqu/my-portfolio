@@ -20,6 +20,7 @@ interface CaseRowProps {
   overview: string;
   role: string;
   scope: string;
+  last?: boolean;
 }
 
 function WritingsRow({
@@ -32,6 +33,7 @@ function WritingsRow({
   overview,
   role,
   scope,
+  last,
 }: CaseRowProps) {
   const [measureRef, bounds] = useMeasure();
   // const [currentHeight, setCurrentHeight] = useState(bounds.height);
@@ -115,7 +117,7 @@ function WritingsRow({
     return (
       <motion.p className="flex w-full flex-col gap-[12px] text-[14px]">
         {matches.map((match, index) => (
-          <span key={index} className="line-clamp-2 leading-[26px]">
+          <span key={index} className="line-clamp-2">
             {match[1]}
           </span>
         ))}
@@ -124,18 +126,31 @@ function WritingsRow({
   };
 
   return (
-    // <Link href={pageUrl} className="border-b">
-    <motion.div
-      initial={{ scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 400,
-        damping: 20,
-      }}
-      className="flex flex-col gap-[8px] border-b px-[12px] py-[16px] text-maintext transition-all duration-200 ease-out md:px-[20px]"
-    >
-      <motion.div className="flex flex-col items-center gap-[16px] md:flex-row">
-        {/* <motion.div
+    <Link href={pageUrl}>
+      <motion.div
+        initial={{ scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 20,
+        }}
+        className={`group flex flex-col gap-[8px] px-[12px] py-[12px] text-maintext transition-all duration-200 ease-out hover:bg-muted md:px-[20px]`}
+      >
+        <div className="shadow-custom relative mb-[8px] flex h-[128px] w-full rounded-[12px] border-[4px] border-white">
+          {video ? (
+            <VideoComponent url={coverURL} />
+          ) : (
+            <Image
+              unoptimized
+              fill
+              className="object-cover"
+              src={coverURL}
+              alt="picture"
+            />
+          )}
+        </div>
+        <motion.div className="flex flex-col items-center gap-[16px] md:flex-row">
+          {/* <motion.div
           className="shadow-custom w-full rotate-[0deg] overflow-hidden rounded-[12px] border-[4px] border-white bg-subtle md:flex md:w-[156px] md:shrink-0"
           animate={{ height: bounds.height }}
         >
@@ -151,19 +166,20 @@ function WritingsRow({
             />
           )}
         </motion.div> */}
-        <motion.div className="flex flex-col gap-[8px]" ref={measureRef}>
-          <Link href={pageUrl}>
-            <p className="line-clamp-1 flex items-start gap-[6px] text-[18px] font-medium leading-snug text-maintext hover:text-primary md:items-center">
+          <motion.div
+            className="flex w-full flex-col gap-[8px]"
+            ref={measureRef}
+          >
+            <p className="group line-clamp-1 flex items-start gap-[6px] text-[16px] font-medium leading-snug text-maintext group-hover:text-primary md:items-center">
               {/* <span className="relative top-[8px] h-[8px] w-[6px] rounded-[2px] bg-primary" /> */}
               {title}
             </p>
-          </Link>
 
-          {/* {renderDescription()} */}
+            {/* {renderDescription()} */}
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <motion.div className="flex w-full flex-col gap-[14px] md:flex-row">
-        {/* <div className="flex w-full gap-[8px] md:w-[156px] md:shrink-0 md:flex-col">
+        <motion.div className="flex w-full flex-col gap-[14px] md:flex-row">
+          {/* <div className="flex w-full gap-[8px] md:w-[156px] md:shrink-0 md:flex-col">
           <div className="flex w-full gap-[16px] md:max-w-[156px] md:flex-col">
             <motion.div className="flex w-[200px] flex-col gap-[2px] md:w-full">
               <motion.p className="w-full text-[12px] font-semibold text-subtext">
@@ -179,14 +195,14 @@ function WritingsRow({
             </motion.div>
           </div>
         </div> */}
-        <div className="flex w-full flex-col gap-[2px]">
-          {/* <motion.div className="flex w-full justify-between">
+          <div className="flex w-full flex-col gap-[2px]">
+            {/* <motion.div className="flex w-full justify-between">
             <motion.p className="text-[12px] font-semibold text-subtext">
               Overview
             </motion.p> 
           </motion.div>*/}
-          <div className="mb-[px] flex">{renderOverview()}</div>
-          {/* <div className="mt-[0px] flex w-full py-[0px]">
+            <div className="mb-[px] flex">{renderOverview()}</div>
+            {/* <div className="mt-[0px] flex w-full py-[0px]">
             <Link href={pageUrl}>
               <button className="gap-[6px] py-[0px]">
                 <p className="text-[14px] font-semibold text-primary hover:underline">
@@ -195,10 +211,10 @@ function WritingsRow({
               </button>
             </Link>
           </div> */}
-        </div>
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
-    // </Link>
+    </Link>
   );
 }
 

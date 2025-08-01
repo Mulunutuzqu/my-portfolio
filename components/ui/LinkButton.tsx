@@ -17,7 +17,7 @@ interface LinkButtonProps {
   children: React.ReactNode;
   internal?: boolean;
   asToggle?: boolean;
-
+  inTab?: true;
   isToggledOn?: boolean;
   asDownload?: boolean;
 }
@@ -44,6 +44,7 @@ export default function LinkButton({
   asToggle,
   isToggledOn,
   asDownload,
+  inTab,
 }: LinkButtonProps) {
   return asToggle ? (
     <motion.p
@@ -79,7 +80,7 @@ export default function LinkButton({
       )}
     </motion.p>
   ) : (
-    <Link href={href} target="_blank">
+    <Link href={href} target={inTab ? "_self" : "_blank"}>
       <motion.p
         whileHover="hover"
         className={clsx(

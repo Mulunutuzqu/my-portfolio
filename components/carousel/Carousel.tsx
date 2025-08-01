@@ -1,111 +1,219 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   EmblaCarouselType,
   EmblaEventType,
   EmblaOptionsType,
 } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
+import { NextButton, PrevButton, usePrevNextButtons } from "./ArrowButton";
+import Divider from "../ui/Divider";
+
+const TWEEN_FACTOR_BASE = 0.6;
+
+const numberWithinRange = (number: number, min: number, max: number): number =>
+  Math.min(Math.max(number, min), max);
 
 type PropType = {
+  slides?: number[];
   options?: EmblaOptionsType;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const { slides, options } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
+    Autoplay({
+      playOnInit: true,
+      delay: 4000,
+      stopOnMouseEnter: true,
+      stopOnInteraction: false,
+    }),
+  ]);
+  const [isDragging, setIsDragging] = useState(false);
+  const tweenFactor = useRef(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi);
+
+  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
+    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
+  }, []);
+
+  const tweenOpacity = useCallback(
+    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
+      const engine = emblaApi.internalEngine();
+      const scrollProgress = emblaApi.scrollProgress();
+      const slidesInView = emblaApi.slidesInView();
+      const isScrollEvent = eventName === "scroll";
+
+      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+        let diffToTarget = scrollSnap - scrollProgress;
+        const slidesInSnap = engine.slideRegistry[snapIndex];
+
+        slidesInSnap.forEach((slideIndex) => {
+          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
+
+          if (engine.options.loop) {
+            engine.slideLooper.loopPoints.forEach((loopItem) => {
+              const target = loopItem.target();
+
+              if (slideIndex === loopItem.index && target !== 0) {
+                const sign = Math.sign(target);
+
+                if (sign === -1) {
+                  diffToTarget = scrollSnap - (1 + scrollProgress);
+                }
+                if (sign === 1) {
+                  diffToTarget = scrollSnap + (1 - scrollProgress);
+                }
+              }
+            });
+          }
+
+          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
+          const opacity = numberWithinRange(tweenValue, 0, 1).toString();
+          emblaApi.slideNodes()[slideIndex].style.opacity = opacity;
+        });
+      });
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!emblaApi) return;
-    // No opacity tween logic
-  }, [emblaApi]);
+
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+
+    setTweenFactor(emblaApi);
+    tweenOpacity(emblaApi);
+    emblaApi
+      .on("reInit", setTweenFactor)
+      .on("reInit", tweenOpacity)
+      .on("scroll", tweenOpacity)
+      .on("slideFocus", tweenOpacity);
+
+    // Cursor grabbing logic
+    const handlePointerDown = () => setIsDragging(true);
+    const handlePointerUp = () => setIsDragging(false);
+    emblaApi.on("pointerDown", handlePointerDown);
+    emblaApi.on("pointerUp", handlePointerUp);
+    // emblaApi.on("pointerLeave", handlePointerUp); // Not supported by EmblaEventType
+
+    return () => {
+      emblaApi.off("pointerDown", handlePointerDown);
+      emblaApi.off("pointerUp", handlePointerUp);
+      emblaApi.off("select", onSelect);
+      // emblaApi.off("pointerLeave", handlePointerUp); // Not supported by EmblaEventType
+    };
+  }, [emblaApi, tweenOpacity, setTweenFactor]);
 
   return (
-    <div className="embla pointer-events-none">
-      <div className="embla__viewport" ref={emblaRef}>
+    <div className="embla">
+      <div
+        className={`embla__viewport ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+        ref={emblaRef}
+      >
         <div className="embla__container">
-          <div className="embla__slide relative">
-            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted py-[32px]">
-              <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
-                <video autoPlay loop muted playsInline preload="auto">
-                  <source
-                    src="/assets/videos/cart.mp4"
-                    type="video/webm"
-                  ></source>
-                </video>
-              </div>
-              <p className="absolute bottom-[8px] z-20 text-[12px] italic text-subtext">
-                *Non-functional animations: for presentation purpose
-              </p>
-              <div className="absolute flex h-[574px] w-[270px] items-center justify-center overflow-hidden rounded-[28px] bg-white">
-                <p>Loading...</p>
-              </div>
-            </div>
-          </div>
-          <div className="embla__slide relative">
-            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
-              <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
-                <video autoPlay loop muted playsInline preload="auto">
-                  <source
-                    src="/assets/videos/plp.mp4"
-                    type="video/webm"
-                  ></source>
-                </video>
-              </div>
-              <p className="absolute bottom-[8px] z-20 text-[12px] italic text-subtext">
-                *Non-functional animations: for presentation purpose
-              </p>
-              <div className="absolute flex h-[574px] w-[270px] items-center justify-center overflow-hidden rounded-[28px] bg-white">
-                <p>Loading...</p>
-              </div>
-            </div>
-          </div>
-          <div className="embla__slide invisible relative">
-            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
-              {/* <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
-                <video autoPlay loop muted playsInline preload="auto">
-                  <source
-                    src="/assets/videos/map.mp4"
-                    type="video/webm"
-                  ></source>
-                </video>
-              </div> */}
-              <div className="h-[574px] w-[270px] overflow-hidden rounded-[28px] bg-white">
-                <p>Loading...</p>
-              </div>
-            </div>
-          </div>
-          <div className="embla__slide invisible relative">
-            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
-              {/* <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
-                <video autoPlay loop muted playsInline preload="auto">
-                  <source
-                    src="/assets/videos/cart.mp4"
-                    type="video/webm"
-                  ></source>
-                </video>
-              </div> */}
+          {/* ...existing code... */}
 
-              <div className="h-[574px] w-[270px] overflow-hidden rounded-[28px] bg-white">
-                <p>Loading...</p>
+          <div className="embla__slide group relative py-[4px]">
+            <div className="relative z-10 flex aspect-[756/491] flex-col border-x bg-muted p-[20px]">
+              <div className="absolute left-0 top-0 flex w-full">
+                <Divider />
+              </div>
+              <div
+                className={`invisible absolute left-0 top-0 z-[20] flex h-full w-full items-center justify-between p-[8px] ${selectedIndex === 0 && "group-hover:visible"}`}
+              >
+                <PrevButton
+                  onClick={onPrevButtonClick}
+                  disabled={prevBtnDisabled}
+                />
+                <NextButton
+                  onClick={onNextButtonClick}
+                  disabled={nextBtnDisabled}
+                />
+              </div>
+              <div className="relative flex aspect-[756/491] place-self-center overflow-hidden rounded-[12px] shadow-md">
+                <Image
+                  width={1200}
+                  height={780}
+                  src="/assets/works/tele-1-min.png"
+                  alt="tele-1"
+                  className=""
+                />
+              </div>
+              <div className="absolute bottom-0 left-0 flex w-full">
+                <Divider />
               </div>
             </div>
           </div>
-          <div className="embla__slide relative">
-            <div className="relative z-10 flex h-full w-full items-center justify-center place-self-center rounded-[20px] border bg-muted">
-              <div className="z-10 h-[574px] w-[270px] overflow-hidden rounded-[28px]">
-                <video autoPlay loop muted playsInline preload="auto">
-                  <source
-                    src="/assets/videos/map.mp4"
-                    type="video/webm"
-                  ></source>
-                </video>
+          <div className="embla__slide group relative py-[4px]">
+            <div className="relative z-10 flex aspect-[756/491] flex-col border-x bg-muted p-[20px]">
+              <div className="absolute left-0 top-0 flex w-full">
+                <Divider />
               </div>
-              <p className="absolute bottom-[8px] z-20 text-[12px] italic text-subtext">
-                *Non-functional animations: for presentation purpose
-              </p>
-              <div className="absolute flex h-[574px] w-[270px] items-center justify-center overflow-hidden rounded-[28px] bg-white">
-                <p>Loading...</p>
+              <div
+                className={`invisible absolute left-0 top-0 z-[20] flex h-full w-full items-center justify-between p-[8px] ${selectedIndex === 1 && "group-hover:visible"}`}
+              >
+                <PrevButton
+                  onClick={onPrevButtonClick}
+                  disabled={prevBtnDisabled}
+                />
+                <NextButton
+                  onClick={onNextButtonClick}
+                  disabled={nextBtnDisabled}
+                />
+              </div>
+              <div className="relative flex aspect-[756/491] place-self-center overflow-hidden rounded-[12px] shadow-md">
+                <Image
+                  width={1200}
+                  height={780}
+                  src="/assets/works/tele-2-min.png"
+                  alt="tele-1"
+                  className=""
+                />
+              </div>
+              <div className="absolute bottom-0 left-0 flex w-full">
+                <Divider />
+              </div>
+            </div>
+          </div>
+          <div className="embla__slide group relative py-[4px]">
+            <div className="relative z-10 flex aspect-[756/491] flex-col border-x bg-muted p-[20px]">
+              <div className="absolute left-0 top-0 flex w-full">
+                <Divider />
+              </div>
+              <div
+                className={`invisible absolute left-0 top-0 z-[20] flex h-full w-full items-center justify-between p-[8px] ${selectedIndex === 2 && "group-hover:visible"}`}
+              >
+                <PrevButton
+                  onClick={onPrevButtonClick}
+                  disabled={prevBtnDisabled}
+                />
+                <NextButton
+                  onClick={onNextButtonClick}
+                  disabled={nextBtnDisabled}
+                />
+              </div>
+              <div className="relative flex aspect-[756/491] place-self-center overflow-hidden rounded-[12px] shadow-md">
+                <Image
+                  width={1200}
+                  height={780}
+                  src="/assets/works/tele-3-min.png"
+                  alt="tele-1"
+                  className=""
+                />
+              </div>
+              <div className="absolute bottom-0 left-0 flex w-full">
+                <Divider />
               </div>
             </div>
           </div>

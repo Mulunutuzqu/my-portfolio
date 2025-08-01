@@ -42,7 +42,7 @@ export default function SnippetVaul({ url, urlFull }: SnippetVaulProps) {
             <Drawer.Overlay className="pointer-events-none fixed inset-0 z-[50] backdrop-blur-md" />
             <Drawer.Content className="fixed bottom-0 z-[1000] mt-24 flex h-[90%] w-full flex-col rounded-t-[4px] outline-none md:h-[90%]">
               <div
-                className="no-scrollbar flex w-full place-self-center overflow-y-auto rounded-t-[24px] border bg-white p-[4px] shadow-lg md:min-w-[560px] md:max-w-[640px]"
+                className="no-scrollbar flex w-full place-self-center overflow-y-auto rounded-t-[24px] border bg-white p-[4px] shadow-lg md:min-w-[560px] md:max-w-[600px]"
                 style={{}}
               >
                 <div className="mx-auto w-full space-y-4">

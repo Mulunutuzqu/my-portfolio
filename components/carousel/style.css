@@ -1,8 +1,8 @@
 .embla {
   margin: auto;
   --slide-height: 640px;
-  --slide-spacing: 24px;
-  --slide-size: 96%;
+  --slide-spacing: 0px;
+  --slide-size: 100%;
 }
 .embla__viewport {
   overflow: hidden;
@@ -17,27 +17,27 @@
   transform: translate3d(0, 0, 0);
   flex: 0 0 var(--slide-size);
   min-width: 0px;
-  max-width: 420px;
+  max-width: 960px;
   padding-left: var(--slide-spacing);
 }
 
-/* @media (min-width: 500px) {
+@media (min-width: 640px) {
   .embla__slide {
-    flex: 0 0 80%;
+    flex: 0 0 87%;
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 959px) {
   .embla__slide {
-    flex: 0 0 60%;
+    flex: 0 0 70%;
   }
 }
 
 @media (min-width: 1200px) {
   .embla__slide {
-    flex: 0 0 50%;
+    max-width: none;
   }
-} */
+}
 
 .embla__slide__img {
   border-radius: 1.8rem;

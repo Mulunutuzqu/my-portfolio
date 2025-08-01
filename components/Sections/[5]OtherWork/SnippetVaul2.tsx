@@ -29,7 +29,7 @@ export default function SnippetVaul2({ url, urlFull }: SnippetVaulProps) {
               ref={urlFull}
               className="fixed bottom-0 z-[1000] mt-24 flex h-[90%] w-full flex-col rounded-t-[4px] outline-none md:h-[90%]"
             >
-              <div className="flex w-full place-self-center overflow-y-auto rounded-t-[24px] border bg-white p-[4px] shadow-lg md:min-w-[560px] md:max-w-[640px]">
+              <div className="flex w-full place-self-center overflow-y-auto rounded-t-[24px] border bg-white p-[4px] shadow-lg md:min-w-[560px] md:max-w-[600px]">
                 <div className="mx-auto w-full space-y-4">
                   <div
                     aria-hidden

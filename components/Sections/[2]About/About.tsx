@@ -55,6 +55,9 @@ export default function About() {
       initial="hidden"
       animate="show"
     >
+      <div className="mt-[3px] w-full">
+        <Divider />
+      </div>
       <section className="z-10 mt-[8px] flex w-full flex-col gap-[6px] p-[20px] transition-all md:px-[32px] md:py-[16px]">
         <motion.p className="text-[12px] font-semibold text-subtext">
           Get to know more
@@ -128,7 +131,9 @@ export default function About() {
         {/* <ExperienceAccordionTest /> */}
       </section>
 
-      <div className="mt-[32px]">{/* <Divider /> */}</div>
+      <div className="mb-[32px] mt-[12px] w-full">
+        <Divider />
+      </div>
     </motion.div>
   );
 }
