@@ -138,7 +138,7 @@ function WritingsRow({
       >
         <div className="shadow-custom relative mb-[8px] flex h-[128px] w-full rounded-[12px] border-[4px] border-white">
           {video ? (
-            <VideoComponent url={coverURL} />
+            <VideoComponent url={coverURL} isLooping={false} />
           ) : (
             <Image
               unoptimized

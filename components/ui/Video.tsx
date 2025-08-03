@@ -5,9 +5,14 @@ import { useEffect, useRef } from "react";
 interface videoProps {
   url: string;
   isLooping?: boolean;
+  autoplay?: boolean;
 }
 
-export default function VideoComponent({ url, isLooping = true }: videoProps) {
+export default function VideoComponent({
+  url,
+  isLooping = true,
+  autoplay = true,
+}: videoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // useEffect(() => {
@@ -20,7 +25,7 @@ export default function VideoComponent({ url, isLooping = true }: videoProps) {
     <video
       preload="none"
       aria-label="Video player"
-      autoPlay
+      autoPlay={autoplay}
       muted
       playsInline
       loop={isLooping}
