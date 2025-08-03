@@ -1,5 +1,6 @@
 import CarouselView from "@/components/carousel/CarouselView";
 import CarouselView2 from "@/components/carousel/CarouselView2";
+import CarouselView3 from "@/components/carousel/CarouselView3";
 import { FadeUp } from "@/components/Motions/FadeUp";
 
 import Intro from "@/components/Sections/[1]Intro/Intro";
@@ -31,6 +32,7 @@ export default function Home() {
             <CarouselView />
 
             <CarouselView2 />
+            <CarouselView3 />
             {/* <OtherWork /> */}
             <div className="flex w-full max-w-[600px] p-[16px] md:p-[0px]">
               <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">

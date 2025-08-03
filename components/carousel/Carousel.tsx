@@ -116,30 +116,23 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, tweenOpacity, setTweenFactor]);
 
   return (
-    <div className="embla">
+    <div className="embla group">
+      <div
+        className={`pointer-events-none invisible absolute top-0 z-[20] flex h-full w-full items-center justify-between self-center p-[8px] px-[12px] group-hover:visible`}
+      >
+        <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+        <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+      </div>
       <div
         className={`embla__viewport ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
         ref={emblaRef}
       >
         <div className="embla__container">
           {/* ...existing code... */}
-
-          <div className="embla__slide group relative py-[4px]">
+          <div className="embla__slide relative py-[4px]">
             <div className="relative z-10 flex aspect-[756/491] flex-col border-x bg-muted p-[20px]">
               <div className="absolute left-0 top-0 flex w-full">
                 <Divider />
-              </div>
-              <div
-                className={`invisible absolute left-0 top-0 z-[20] flex h-full w-full items-center justify-between p-[8px] ${selectedIndex === 0 && "group-hover:visible"}`}
-              >
-                <PrevButton
-                  onClick={onPrevButtonClick}
-                  disabled={prevBtnDisabled}
-                />
-                <NextButton
-                  onClick={onNextButtonClick}
-                  disabled={nextBtnDisabled}
-                />
               </div>
               <div className="relative flex aspect-[756/491] place-self-center overflow-hidden rounded-[12px] shadow-md">
                 <Image
@@ -155,12 +148,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               </div>
             </div>
           </div>
-          <div className="embla__slide group relative py-[4px]">
+          <div className="embla__slide relative py-[4px]">
             <div className="relative z-10 flex aspect-[756/491] flex-col border-x bg-muted p-[20px]">
               <div className="absolute left-0 top-0 flex w-full">
                 <Divider />
               </div>
-              <div
+              {/* <div
                 className={`invisible absolute left-0 top-0 z-[20] flex h-full w-full items-center justify-between p-[8px] ${selectedIndex === 1 && "group-hover:visible"}`}
               >
                 <PrevButton
@@ -171,7 +164,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   onClick={onNextButtonClick}
                   disabled={nextBtnDisabled}
                 />
-              </div>
+              </div> */}
               <div className="relative flex aspect-[756/491] place-self-center overflow-hidden rounded-[12px] shadow-md">
                 <Image
                   width={1200}
@@ -186,12 +179,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               </div>
             </div>
           </div>
-          <div className="embla__slide group relative py-[4px]">
+          <div className="embla__slide relative py-[4px]">
             <div className="relative z-10 flex aspect-[756/491] flex-col border-x bg-muted p-[20px]">
               <div className="absolute left-0 top-0 flex w-full">
                 <Divider />
               </div>
-              <div
+              {/* <div
                 className={`invisible absolute left-0 top-0 z-[20] flex h-full w-full items-center justify-between p-[8px] ${selectedIndex === 2 && "group-hover:visible"}`}
               >
                 <PrevButton
@@ -202,7 +195,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   onClick={onNextButtonClick}
                   disabled={nextBtnDisabled}
                 />
-              </div>
+              </div> */}
               <div className="relative flex aspect-[756/491] place-self-center overflow-hidden rounded-[12px] shadow-md">
                 <Image
                   width={1200}
