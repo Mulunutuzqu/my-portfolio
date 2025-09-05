@@ -33,8 +33,8 @@ export default function Intro() {
         </motion.div>
         <motion.p className="z-20 mt-[-32px] font-light italic text-maintext">
           <Greetings />
-          Product Designer — Zero-to-market veteran, with 5 years of experience
-          in startups and agencies. Based in Jakarta
+          Product & Interaction Designer — Zero-to-market veteran, with 5 years
+          of experience in startups and agencies. Based in Jakarta
           <motion.span
             onMouseEnter={handleFlagEnter}
             onMouseLeave={handleFlagLeave}

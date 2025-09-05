@@ -77,6 +77,8 @@ function Greetings() {
           width={56}
           height={56}
           alt="profile picture"
+          priority
+          loading="eager"
         />
       </motion.span>
       <motion.span
@@ -97,6 +99,7 @@ function Greetings() {
           alt="Hand waving"
           fill={true}
           loading="eager"
+          priority
         />
       </motion.span>
     </motion.span>

@@ -73,7 +73,7 @@ export default function WritingsList({
             </motion.div>
           );
         })}
-        <div className="z-20 flex h-full w-full items-center justify-center text-subtext">
+        <div className="z-20 hidden h-full w-full items-center justify-center text-subtext md:flex">
           <p className="flex w-full justify-center rounded border border-x-0 border-dashed px-[12px] py-[8px]">
             👀 Coming soon!
           </p>

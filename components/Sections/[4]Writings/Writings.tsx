@@ -13,7 +13,7 @@ export default async function Writings({
   const posts = await fetchCasePages();
 
   return (
-    <div className="flex w-full max-w-[960px] flex-col gap-[0px] bg-white">
+    <div className="flex w-full max-w-[980px] flex-col gap-[0px] bg-white">
       <WritingsList posts={posts.results} limit={limit} icon={icon} />
       {limit ? (
         <Link

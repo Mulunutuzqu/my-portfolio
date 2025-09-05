@@ -50,7 +50,7 @@ const CarouselView3: React.FC = () => (
         traditional telecom services into an all-in-one lifestyle ecosystem.
       </p>
     </div>
-    <div className="flex w-full max-w-[960px] flex-col justify-center">
+    <div className="flex w-full max-w-[980px] flex-col justify-center">
       <Divider />
       <div className="flex w-full justify-center border-x bg-muted">
         <div className="flex w-full items-center justify-center border-r-[1px] p-[16px]">
