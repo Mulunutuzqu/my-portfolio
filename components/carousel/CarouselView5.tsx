@@ -53,7 +53,7 @@ const CarouselView5: React.FC = () => (
 
       <p className="text-[14px]">
         Exploration on photo gallery interaction featuring fluid actions and UI.
-        Delete photo's interaction is inspired by Family App.
+        Delete photos interaction is inspired by Family App.
       </p>
     </div>
     <div className="flex w-full max-w-[980px] flex-col justify-center">
