@@ -7,6 +7,7 @@ interface FadeUpProps {
   delay?: number;
   duration?: number;
   className?: string;
+  once: boolean;
 }
 
 const hidden = {
@@ -19,14 +20,20 @@ const visible = {
   y: 0,
 };
 
-export function FadeUp({ children, delay, duration, className }: FadeUpProps) {
+export function FadeUp({
+  children,
+  delay,
+  duration,
+  className,
+  once,
+}: FadeUpProps) {
   return (
     <motion.div
       className={className}
       variants={{ visible, hidden }}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: once }}
       transition={{ delay: delay, type: "spring", duration: duration }}
     >
       {children}

@@ -171,7 +171,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   height={780}
                   src="/assets/works/tele-2-min.png"
                   alt="tele-1"
-                  className=""
+                  className="object-fill"
                 />
               </div>
               <div className="absolute bottom-0 left-0 flex w-full">

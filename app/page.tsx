@@ -28,24 +28,74 @@ export default function Home() {
             delay={0}
             duration={0.8}
             className="flex w-full flex-col items-center"
+            once
           >
             <Intro />
-            {/* <About /> */}
+          </FadeUp>
+          {/* <About /> */}
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once
+          >
             <Writings icon={false} />
+          </FadeUp>
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
             <CarouselView6 />
+          </FadeUp>
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
             <CarouselView5 />
+          </FadeUp>
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
             <CarouselView4 />
+          </FadeUp>
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
             <CarouselView />
-
+          </FadeUp>
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
             <CarouselView2 />
+          </FadeUp>
+          <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
             <CarouselView3 />
-            {/* <OtherWork /> */}
             <div className="flex w-full max-w-[600px] p-[16px] md:p-[0px]">
               <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
-                Work in progress.
+                I hate footer lol
               </p>
             </div>
           </FadeUp>
+          {/* <OtherWork /> */}
+
           <div className="h-[64px]"></div>
         </div>
       </main>
