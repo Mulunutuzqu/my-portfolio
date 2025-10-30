@@ -88,11 +88,11 @@ export default async function Page(props: {
 
   return (
     <div className="flex w-full flex-col items-center scroll-smooth">
-      <div className="pointer-events-none fixed inset-0 z-[0] h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.025]" />
+      <div className="pointer-events-none fixed inset-0 z-[0] h-screen w-full bg-noise bg-[size:180px] bg-repeat opacity-[0.015]" />
       <FadeUp
         delay={0}
         duration={0.8}
-        className="z-10 mt-[-8px] flex w-full flex-col items-center justify-center gap-[24px]"
+        className="z-10 flex w-full max-w-[720px] flex-col items-center justify-center"
       >
         <NavStateController backButton={true} />
 
@@ -105,18 +105,11 @@ export default async function Page(props: {
           scope={post.properties.Scope.rich_text[0].plain_text}
         />
         <NotionContentWrapper html={html} />
-        <div className="notion-max-w flex w-full p-[16px] md:p-[0px]">
-          <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
+        <div className="flex w-full px-[20px] md:px-0">
+          <p className="my-[64px] text-[20px] font-medium text-subtext/40">
             You&apos;ve reached the end.
           </p>
         </div>
-        {/* <div>
-          {DynamicComponent ? (
-            <DynamicComponent />
-          ) : (
-            <div>Failed to load component: {customComponentType}</div>
-          )}
-        </div> */}
       </FadeUp>
     </div>
   );

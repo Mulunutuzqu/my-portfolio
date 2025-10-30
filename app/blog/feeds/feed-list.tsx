@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Feed from "./feed";
-import dayjs from "dayjs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import LinkButton from "@/components/ui/LinkButton";
@@ -97,9 +96,7 @@ export default function FeedList({ posts }: { posts: any[] }) {
                   coverURL={post.properties.Cover.rich_text[0].plain_text}
                   video={post.properties.Video.checkbox}
                   type={post.properties.Type.select.name}
-                  date={dayjs(post.properties.Date.created_time).format(
-                    "DD MMM YYYY ",
-                  )}
+                  date={post.formattedDate}
                 />
               ),
           )}

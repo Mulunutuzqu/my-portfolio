@@ -75,7 +75,7 @@ export default function Intro() {
               />
             </motion.span>
           </motion.span>
-          <br /> <br />
+          {/* <br /> <br />
           <span className="text-maintext underline decoration-primary decoration-wavy underline-offset-[3px]">
             An initiator
           </span>
@@ -87,7 +87,7 @@ export default function Intro() {
           <span className="text-maintext underline decoration-primary decoration-wavy underline-offset-[3px]">
             detail oriented
           </span>
-          .
+          . */}
         </motion.p>
         <motion.p className="text-maintext">
           I craft data-inspired interface aiming towards business goals and user

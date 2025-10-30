@@ -29,7 +29,7 @@ export default function VideoComponent({
       muted
       playsInline
       loop={isLooping}
-      className="absolute h-full w-full object-cover"
+      className="absolute h-full w-full rounded-[8px] object-cover"
       ref={videoRef}
     >
       <source src={url} type="video/mp4" />

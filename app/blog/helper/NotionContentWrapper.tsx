@@ -14,7 +14,7 @@ export default function NotionContentWrapper({
     <>
       <ImageZoomHandler />
       <div
-        className="notion-render notion-max-w mt-[-24px] w-full place-self-center p-[16px] md:p-[0px]"
+        className="notion-render w-full place-self-center px-[20px] md:px-0"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </>

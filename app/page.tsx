@@ -3,6 +3,7 @@ import CarouselView2 from "@/components/carousel/CarouselView2";
 import CarouselView3 from "@/components/carousel/CarouselView3";
 import CarouselView4 from "@/components/carousel/CarouselView4";
 import CarouselView5 from "@/components/carousel/CarouselView5";
+import CarouselView6 from "@/components/carousel/CarouselView6";
 import { FadeUp } from "@/components/Motions/FadeUp";
 
 import Intro from "@/components/Sections/[1]Intro/Intro";
@@ -31,6 +32,7 @@ export default function Home() {
             <Intro />
             {/* <About /> */}
             <Writings icon={false} />
+            <CarouselView6 />
             <CarouselView5 />
             <CarouselView4 />
             <CarouselView />

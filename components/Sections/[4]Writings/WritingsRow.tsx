@@ -143,7 +143,7 @@ function WritingsRow({
             <Image
               unoptimized
               fill
-              className="object-cover"
+              className="rounded-[8px] object-cover"
               src={coverURL}
               alt="picture"
             />
