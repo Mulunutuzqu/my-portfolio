@@ -93,6 +93,7 @@ export default async function Page(props: {
         delay={0}
         duration={0.8}
         className="z-10 flex w-full max-w-[720px] flex-col items-center justify-center"
+        once
       >
         <NavStateController backButton={true} />
 

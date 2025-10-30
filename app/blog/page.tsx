@@ -12,8 +12,9 @@ export default function Blog() {
           delay={0}
           duration={0.8}
           className="z-20 flex w-full shrink-0 flex-col"
+          once
         >
-          <div className="relative mt-[120px] mb-[64px] flex h-[96px] w-full shrink-0 items-center justify-center">
+          <div className="relative mb-[64px] mt-[120px] flex h-[96px] w-full shrink-0 items-center justify-center">
             <Image
               src="/assets/blogs.svg"
               fill

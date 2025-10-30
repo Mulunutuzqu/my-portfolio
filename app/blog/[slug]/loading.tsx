@@ -19,6 +19,7 @@ export default function Loading() {
           className="mt-[-8px] flex w-full flex-col items-center gap-[24px] p-[8px]"
           delay={0}
           duration={0.8}
+          once
         >
           <BlogSkeleton />
         </FadeUp>
