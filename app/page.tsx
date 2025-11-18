@@ -108,7 +108,7 @@ export default function Home() {
             <CarouselView3 />
             <div className="flex w-full max-w-[600px] p-[16px] md:p-[0px]">
               <p className="my-[32px] text-[24px] font-semibold text-gray-300 md:text-[40px]">
-                I hate footer lol
+                this is a footer.
               </p>
             </div>
           </FadeUp>
