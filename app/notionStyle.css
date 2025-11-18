@@ -18,7 +18,7 @@
 }
 
 .notion-text-code {
-  background-color: hsl(var(--muted));
+  background-color: hsl(45 100% 96%);
   display: inline;
   border-radius: 4px;
   padding: 3px 6px;

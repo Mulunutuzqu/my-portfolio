@@ -5,6 +5,7 @@ import CarouselView4 from "@/components/carousel/CarouselView4";
 import CarouselView5 from "@/components/carousel/CarouselView5";
 import CarouselView6 from "@/components/carousel/CarouselView6";
 import CarouselView7 from "@/components/carousel/CarouselView7";
+import CarouselView8 from "@/components/carousel/CarouselView8";
 import { FadeUp } from "@/components/Motions/FadeUp";
 
 import Intro from "@/components/Sections/[1]Intro/Intro";
@@ -64,7 +65,7 @@ export default function Home() {
             className="flex w-full flex-col items-center justify-center"
             once={false}
           >
-            <CarouselView4 />
+            <CarouselView8 />
           </FadeUp>
           <FadeUp
             delay={0}
@@ -72,8 +73,16 @@ export default function Home() {
             className="flex w-full flex-col items-center justify-center"
             once={false}
           >
-            <CarouselView7 />
+            <CarouselView4 />
           </FadeUp>
+          {/* <FadeUp
+            delay={0}
+            duration={0.8}
+            className="flex w-full flex-col items-center justify-center"
+            once={false}
+          >
+            <CarouselView7 />
+          </FadeUp> */}
           <FadeUp
             delay={0}
             duration={0.8}
