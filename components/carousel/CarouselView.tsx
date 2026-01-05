@@ -43,7 +43,7 @@ const CarouselView: React.FC = () => (
               </p>
             </div>
             <div className="flex w-full items-center justify-between">
-              <p className="text-[12px]">Sr. Product Designer</p>
+              <p className="text-[12px]">Product Designer</p>
               <p className="text-[12px]">Egroceries</p>
             </div>
           </div>
